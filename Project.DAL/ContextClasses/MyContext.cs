@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Project.CONF.Configurations;
+using Project.DAL.Extensions;
 using Project.ENTITIES.Models;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace Project.DAL.ContextClasses
             builder.ApplyConfiguration(new MovieConfiguration());
             builder.ApplyConfiguration(new MovieCastConfiguration());
             builder.ApplyConfiguration(new MovieGenreConfiguration());
+            UserRoleDataSeedExtension.SeedUsers(builder);
         }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppUserProfile> Profiles { get; set; }
