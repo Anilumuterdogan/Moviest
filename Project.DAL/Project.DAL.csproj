@@ -16,4 +16,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Project.CONF\Project.CONF.csproj" />
+  </ItemGroup>
+
 </Project>
