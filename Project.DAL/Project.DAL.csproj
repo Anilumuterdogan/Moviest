@@ -21,4 +21,9 @@
     <ProjectReference Include="..\Project.CONF\Project.CONF.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\Abstracts\" />
+    <Folder Include="Repositories\Concretes\" />
+  </ItemGroup>
+
 </Project>
