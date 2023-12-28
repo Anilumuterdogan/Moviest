@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.Repositories.Abstracts
 {
-    public interface IProfileRepository<T> :IRepository<AppUserProfile>
+    public interface IProfileRepository :IRepository<AppUserProfile>
     {
 
     }
