@@ -17,4 +17,8 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Project.CONF\Project.CONF.csproj" />
+  </ItemGroup>
+
 </Project>
