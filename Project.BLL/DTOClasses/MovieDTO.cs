@@ -7,17 +7,15 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.DTOClasses
 {
-    public class CastDTO : BaseDTO
+    public class MovieDTO : BaseDTO
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string? NameInMovie { get; set; }
+        public string MovieName { get; set; }
         public string Description { get; set; }
         public string ImgagePath { get; set; }
         public string VideoPath { get; set; }
-        public ICollection<string> Job { get; set; }
 
         //Relational Properties
-        public ICollection<MovieCastDTO> MovieCasts { get; set; }
+        public virtual ICollection<MovieCastDTO> MovieCasts { get; set; }
+        public virtual ICollection<MovieGenreDTO> MovieGenres { get; set; }
     }
 }
