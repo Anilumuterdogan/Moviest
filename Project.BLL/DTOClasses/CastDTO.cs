@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.DTOClasses
 {
-    public class AppUserDTO : BaseDTO
+    public class CastDTO : BaseDTO
     {
-        public string UserName { get; set; }
-        public string UserPassword { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
     }
 }
