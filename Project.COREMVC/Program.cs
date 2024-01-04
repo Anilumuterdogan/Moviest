@@ -5,7 +5,7 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-builder.Services.AddDbContextService();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

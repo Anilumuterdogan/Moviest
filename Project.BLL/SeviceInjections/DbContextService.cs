@@ -1,4 +1,4 @@
-﻿using Castle.Core.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Project.DAL.ContextClasses;
@@ -16,10 +16,8 @@ namespace Project.BLL.SeviceInjections
         {
             ServiceProvider provider = services.BuildServiceProvider();
             IConfiguration? configuration = provider.GetService<IConfiguration?>();
-
-            services.AddDbContextPool<MyContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("MyConnection")).UseLazyLoadingProxies());
+            services.AddDbContextPool<MyContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("MyContext")).UseLazyLoadingProxies());
             return services;
-
         }
     }
 }
