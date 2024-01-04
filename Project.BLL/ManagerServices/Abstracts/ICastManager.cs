@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.ManagerServices.Abstracts
 {
-    public interface IAppUserManager : IManager<AppUserDTO, AppUser>
+    public interface ICastManager : IManager<CastDTO, Cast>
     {
     }
 }
