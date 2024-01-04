@@ -10,5 +10,8 @@ namespace Project.BLL.DTOClasses
     {
         public string UserName { get; set; }
         public string UserPassword { get; set; }
+
+        //Relational Properties
+        public AppUserProfileDTO AppUserProfile { get; set; }
     }
 }
