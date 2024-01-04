@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.ManagerServices.Abstracts
 {
-    public interface IProfileManager : IManager<AppUserProfileDTO,AppUserProfile>
+    public interface IMovieGenreManager : IManager<MovieGenreDTO , MovieGenre>
     {
     }
 }
