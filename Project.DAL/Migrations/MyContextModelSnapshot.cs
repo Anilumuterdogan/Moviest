@@ -453,7 +453,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 14,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 32, 7, 15, DateTimeKind.Utc).AddTicks(2843),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 37, 28, 596, DateTimeKind.Utc).AddTicks(2480),
                             FirstName = "Mary",
                             LastName = "Harron",
                             Status = 0
@@ -823,7 +823,7 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 2,
                             CastID = 14,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 32, 7, 15, DateTimeKind.Utc).AddTicks(2888),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 37, 28, 596, DateTimeKind.Utc).AddTicks(2532),
                             Status = 0
                         });
                 });
