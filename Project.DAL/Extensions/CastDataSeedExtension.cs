@@ -105,6 +105,13 @@ namespace Project.DAL.Extensions
                 LastName = "Dafoe",
             };
             casts.Add(c13);
+            Cast c14 = new Cast()
+            {
+                ID = 14,
+                FirstName = "Mary",
+                LastName = "Harron",
+            };
+            casts.Add(c14);
 
             modelbuilder.Entity<Cast>().HasData(casts);
 

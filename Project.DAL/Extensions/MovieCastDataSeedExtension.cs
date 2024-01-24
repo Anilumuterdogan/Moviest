@@ -116,6 +116,12 @@ namespace Project.DAL.Extensions
                 NameInMovie = "Donald Kimball"
             };
             movieCasts.Add(mC14);
+            MovieCast mC15 = new MovieCast()
+            {
+                MovieID = 2,
+                CastID = 14,               
+            };
+            movieCasts.Add(mC15);
 
             modelBuilder.Entity<MovieCast>().HasData(movieCasts);
         }
