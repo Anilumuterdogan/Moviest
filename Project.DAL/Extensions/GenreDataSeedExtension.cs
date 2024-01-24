@@ -11,7 +11,7 @@ namespace Project.DAL.Extensions
 {
     public static class GenreDataSeedExtension
     {
-        public static void SeedGenre(ModelBuilder modelBuilder)
+        public static void SeedGenres(ModelBuilder modelBuilder)
         {
             List<Genre> genres = new();
             
