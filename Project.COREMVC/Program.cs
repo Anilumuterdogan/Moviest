@@ -1,9 +1,17 @@
-var builder = WebApplication.CreateBuilder(args);
+using Project.BLL.SeviceInjections;
+
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
+builder.Services.AddIdentityServices();
+
+builder.Services.AddDbContextService();
+
+builder.Services.AddManagerServices();
+
+WebApplication app = builder.Build();
 
 
 

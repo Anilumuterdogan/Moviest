@@ -32,6 +32,9 @@ namespace Project.DAL.ContextClasses
             UserRoleDataSeedExtension.SeedUsers(builder);
             GenreDataSeedExtension.SeedGenres(builder);
             MovieDataSeedExtension.SeedMovies(builder);
+            CastDataSeedExtension.SeedCasts(builder);
+            MovieCastDataSeedExtension.SeedMovieCasts(builder);
+            MovieGenreDataSeedExtension.SeedMovieGenres(builder);
         }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppUserProfile> Profiles { get; set; }
