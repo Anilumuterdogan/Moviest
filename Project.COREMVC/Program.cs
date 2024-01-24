@@ -8,8 +8,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddIdentityServices();
 
 builder.Services.AddDbContextService();
-
+builder.Services.AddRepServices();
 builder.Services.AddManagerServices();
+builder.Services.AddInnerInfraServiceInjections();
 
 WebApplication app = builder.Build();
 

@@ -11,7 +11,7 @@ namespace Project.BLL.DTOClasses
     {
         public string MovieName { get; set; }
         public string Description { get; set; }
-        public string ImgagePath { get; set; }
+        public string ImagePath { get; set; }
         public string VideoPath { get; set; }
 
         //Relational Properties

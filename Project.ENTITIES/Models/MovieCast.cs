@@ -10,7 +10,7 @@ namespace Project.ENTITIES.Models
     {
         public int MovieID { get; set; }
         public int CastID { get; set; }
-        public string NameInMovie { get; set; }
+        public string? NameInMovie { get; set; }
 
         //Relational Properties
         public virtual Movie Movie { get; set; }
