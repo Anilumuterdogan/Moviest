@@ -12,9 +12,9 @@ namespace Project.ENTITIES.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string? NameInMovie { get; set; }
-        public string Description { get; set; }
-        public string ImgagePath { get; set; }
-        public string VideoPath { get; set; }
+        public string? Description { get; set; }
+        public string? ImgagePath { get; set; }
+        public string? VideoPath { get; set; }
         public ICollection<string> Job { get; set; }
 
         //Relational Properties
