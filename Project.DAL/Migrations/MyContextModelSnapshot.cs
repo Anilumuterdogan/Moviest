@@ -258,16 +258,16 @@ namespace Project.DAL.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "00cc8a76-dfe8-48c2-afb9-de13e2603f1a",
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 925, DateTimeKind.Utc).AddTicks(1229),
+                            ConcurrencyStamp = "c7e9290d-bd5c-48d3-ac24-e328b6b1bb6d",
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 916, DateTimeKind.Utc).AddTicks(8139),
                             Email = "aost@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "AOST@GMAIL.COM",
                             NormalizedUserName = "AOST",
-                            PasswordHash = "AQAAAAIAAYagAAAAELWMGbBHQv5OpW1nT1wmcRv+bkaF/LkwZpuNJIZovb3FpAhMdyEeBYOH68TDcg/5UQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHG5l/qVsjNbeyHJgVAs2x5aMHxhuv1nBZ8u2hRKZapEfMYNwjl0gHelBtT5AhpCUw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0b5b6c29-3372-40f2-9a53-0f13af766fc3",
+                            SecurityStamp = "5431058b-f0f2-43a4-b17c-c45a2201c506",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "aost"
@@ -349,7 +349,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(99),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4742),
                             FirstName = "Christian",
                             LastName = "Bale",
                             Status = 0
@@ -357,7 +357,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 2,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(103),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4747),
                             FirstName = "Christopher",
                             LastName = "Nolen",
                             Status = 0
@@ -365,7 +365,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 3,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(104),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4748),
                             FirstName = "Heath",
                             LastName = "Ledger",
                             Status = 0
@@ -373,7 +373,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 4,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(105),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4749),
                             FirstName = "Aaron",
                             LastName = "Eckhart",
                             Status = 0
@@ -381,7 +381,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 5,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(231),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4750),
                             FirstName = "Michael",
                             LastName = "Caine",
                             Status = 0
@@ -389,7 +389,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 6,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(233),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4752),
                             FirstName = "Morgon",
                             LastName = "Freeman",
                             Status = 0
@@ -397,7 +397,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 7,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(234),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4753),
                             FirstName = "Cillian",
                             LastName = "Murphy",
                             Status = 0
@@ -405,7 +405,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 8,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(235),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4902),
                             FirstName = "Justin",
                             LastName = "Theroux",
                             Status = 0
@@ -413,7 +413,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 9,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(236),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4903),
                             FirstName = "Josh",
                             LastName = "Lucas",
                             Status = 0
@@ -421,7 +421,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 10,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(238),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4906),
                             FirstName = "Reese",
                             LastName = "Witherspoon",
                             Status = 0
@@ -429,7 +429,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 11,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(239),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4907),
                             FirstName = "Samantha",
                             LastName = "Mathis",
                             Status = 0
@@ -437,7 +437,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 12,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(240),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4908),
                             FirstName = "Jared",
                             LastName = "Leto",
                             Status = 0
@@ -445,9 +445,17 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 13,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(241),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4909),
                             FirstName = "Willem",
                             LastName = "Dafoe",
+                            Status = 0
+                        },
+                        new
+                        {
+                            ID = 14,
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 32, 7, 15, DateTimeKind.Utc).AddTicks(2843),
+                            FirstName = "Mary",
+                            LastName = "Harron",
                             Status = 0
                         });
                 });
@@ -484,133 +492,133 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9939),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4574),
                             GenreName = "Drama",
                             Status = 0
                         },
                         new
                         {
                             ID = 2,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9944),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4584),
                             GenreName = "Action",
                             Status = 0
                         },
                         new
                         {
                             ID = 3,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9946),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4586),
                             GenreName = "Adventure",
                             Status = 0
                         },
                         new
                         {
                             ID = 4,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9947),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4587),
                             GenreName = "Animation",
                             Status = 0
                         },
                         new
                         {
                             ID = 5,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9948),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4588),
                             GenreName = "Biography",
                             Status = 0
                         },
                         new
                         {
                             ID = 6,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9962),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4599),
                             GenreName = "Comedy",
                             Status = 0
                         },
                         new
                         {
                             ID = 7,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9963),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4600),
                             GenreName = "Crime",
                             Status = 0
                         },
                         new
                         {
                             ID = 8,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9964),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4601),
                             GenreName = "Documentary",
                             Status = 0
                         },
                         new
                         {
                             ID = 9,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9965),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4602),
                             GenreName = "Family",
                             Status = 0
                         },
                         new
                         {
                             ID = 10,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9966),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4606),
                             GenreName = "Fantasy",
                             Status = 0
                         },
                         new
                         {
                             ID = 11,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9967),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4606),
                             GenreName = "History",
                             Status = 0
                         },
                         new
                         {
                             ID = 12,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9968),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4607),
                             GenreName = "Horror",
                             Status = 0
                         },
                         new
                         {
                             ID = 13,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9969),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4608),
                             GenreName = "Mystery",
                             Status = 0
                         },
                         new
                         {
                             ID = 14,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9970),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4609),
                             GenreName = "Romance",
                             Status = 0
                         },
                         new
                         {
                             ID = 15,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9971),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4610),
                             GenreName = "War",
                             Status = 0
                         },
                         new
                         {
                             ID = 16,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9972),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4611),
                             GenreName = "Western",
                             Status = 0
                         },
                         new
                         {
                             ID = 17,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9973),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4611),
                             GenreName = "Sci-Fi",
                             Status = 0
                         },
                         new
                         {
                             ID = 18,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9974),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4613),
                             GenreName = "Sport",
                             Status = 0
                         },
                         new
                         {
                             ID = 19,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 987, DateTimeKind.Utc).AddTicks(9975),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4614),
                             GenreName = "Thriller",
                             Status = 0
                         });
@@ -657,14 +665,14 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(61),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4693),
                             MovieName = "The Dark Knight",
                             Status = 0
                         },
                         new
                         {
                             ID = 2,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(64),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4697),
                             MovieName = "American Psycho",
                             Status = 0
                         });
@@ -704,7 +712,7 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 1,
                             CastID = 1,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(291),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4958),
                             NameInMovie = "Bruce Wayne",
                             Status = 0
                         },
@@ -712,14 +720,14 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 1,
                             CastID = 2,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(294),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4963),
                             Status = 0
                         },
                         new
                         {
                             MovieID = 1,
                             CastID = 3,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(295),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4964),
                             NameInMovie = "Joker",
                             Status = 0
                         },
@@ -727,7 +735,7 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 1,
                             CastID = 4,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(296),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4965),
                             NameInMovie = "Harvey Dent",
                             Status = 0
                         },
@@ -735,7 +743,7 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 1,
                             CastID = 5,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(297),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4966),
                             NameInMovie = "Alfred",
                             Status = 0
                         },
@@ -743,7 +751,7 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 1,
                             CastID = 6,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(299),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4968),
                             NameInMovie = "Lucius Fox",
                             Status = 0
                         },
@@ -751,7 +759,7 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 1,
                             CastID = 7,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(300),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4969),
                             NameInMovie = "Scarecrow",
                             Status = 0
                         },
@@ -759,7 +767,7 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 2,
                             CastID = 1,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(301),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4970),
                             NameInMovie = "Patrick Bateman",
                             Status = 0
                         },
@@ -767,7 +775,7 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 2,
                             CastID = 8,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(302),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4971),
                             NameInMovie = "Timothy Bryce",
                             Status = 0
                         },
@@ -775,7 +783,7 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 2,
                             CastID = 9,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(304),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4972),
                             NameInMovie = "Craig McDermott",
                             Status = 0
                         },
@@ -783,7 +791,7 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 2,
                             CastID = 10,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(305),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4973),
                             NameInMovie = "Evelyn Williams",
                             Status = 0
                         },
@@ -791,7 +799,7 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 2,
                             CastID = 11,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(306),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4974),
                             NameInMovie = "Courtney Rawlinson",
                             Status = 0
                         },
@@ -799,7 +807,7 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 2,
                             CastID = 12,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(307),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4975),
                             NameInMovie = "Paul Allen",
                             Status = 0
                         },
@@ -807,8 +815,15 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 2,
                             CastID = 13,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(308),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(4976),
                             NameInMovie = "Donald Kimball",
+                            Status = 0
+                        },
+                        new
+                        {
+                            MovieID = 2,
+                            CastID = 14,
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 32, 7, 15, DateTimeKind.Utc).AddTicks(2888),
                             Status = 0
                         });
                 });
@@ -844,42 +859,42 @@ namespace Project.DAL.Migrations
                         {
                             MovieID = 1,
                             GenreID = 1,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(540),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(5192),
                             Status = 0
                         },
                         new
                         {
                             MovieID = 1,
                             GenreID = 2,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(542),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(5197),
                             Status = 0
                         },
                         new
                         {
                             MovieID = 1,
                             GenreID = 7,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(543),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(5198),
                             Status = 0
                         },
                         new
                         {
                             MovieID = 2,
                             GenreID = 7,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(543),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(5199),
                             Status = 0
                         },
                         new
                         {
                             MovieID = 2,
                             GenreID = 1,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(544),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(5199),
                             Status = 0
                         },
                         new
                         {
                             MovieID = 2,
                             GenreID = 12,
-                            CreatedDate = new DateTime(2024, 1, 24, 17, 20, 17, 988, DateTimeKind.Utc).AddTicks(546),
+                            CreatedDate = new DateTime(2024, 1, 24, 17, 7, 54, 974, DateTimeKind.Utc).AddTicks(5201),
                             Status = 0
                         });
                 });
