@@ -33,11 +33,9 @@ namespace Project.BLL.Mapping
             CreateMap<Cast, CastDTO>()
                 .ForMember(dest => dest.FirstName, act => act.MapFrom(src => src.FirstName))
                 .ForMember(dest => dest.LastName, act => act.MapFrom(src => src.LastName))
-                .ForMember(dest => dest.NameInMovie, act => act.MapFrom(src => src.NameInMovie))
                 .ForMember(dest => dest.Description, act => act.MapFrom(src => src.Description))
                 .ForMember(dest => dest.ImgagePath, act => act.MapFrom(src => src.ImgagePath))
                 .ForMember(dest => dest.VideoPath, act => act.MapFrom(src => src.VideoPath))
-                .ForMember(dest => dest.Job, act => act.MapFrom(src => src.Job))
                 .ForMember(dest => dest.MovieCasts, act => act.MapFrom(src => src.MovieCasts))
                 .ReverseMap();
             #endregion
@@ -55,6 +53,7 @@ namespace Project.BLL.Mapping
                 .ForMember(dest => dest.CastID, act => act.MapFrom(src => src.CastID))
                 .ForMember(dest => dest.Movie, act => act.MapFrom(src => src.Movie))
                 .ForMember(dest => dest.Cast, act => act.MapFrom(src => src.Cast))
+                .ForMember(dest => dest.NameInMovie, act => act.MapFrom(src => src.NameInMovie))
                 .ReverseMap();
             #endregion
 

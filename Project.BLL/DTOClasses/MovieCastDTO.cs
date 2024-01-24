@@ -11,7 +11,7 @@ namespace Project.BLL.DTOClasses
     {
         public int MovieID { get; set; }
         public int CastID { get; set; }
-        public string? NameInMovie { get; set; }
+        public string NameInMovie { get; set; }
 
         //Relational Properties
         public virtual MovieDTO Movie { get; set; }
