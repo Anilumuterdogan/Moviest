@@ -34,7 +34,7 @@ namespace Project.BLL.Mapping
                 .ForMember(dest => dest.FirstName, act => act.MapFrom(src => src.FirstName))
                 .ForMember(dest => dest.LastName, act => act.MapFrom(src => src.LastName))
                 .ForMember(dest => dest.Description, act => act.MapFrom(src => src.Description))
-                .ForMember(dest => dest.ImgagePath, act => act.MapFrom(src => src.ImgagePath))
+                .ForMember(dest => dest.ImagePath, act => act.MapFrom(src => src.ImagePath))
                 .ForMember(dest => dest.VideoPath, act => act.MapFrom(src => src.VideoPath))
                 .ForMember(dest => dest.MovieCasts, act => act.MapFrom(src => src.MovieCasts))
                 .ReverseMap();
@@ -61,7 +61,7 @@ namespace Project.BLL.Mapping
             CreateMap<Movie, MovieDTO>()
                 .ForMember(dest => dest.MovieName, act => act.MapFrom(src => src.MovieName))
                 .ForMember(dest => dest.Description, act => act.MapFrom(src => src.Description))
-                .ForMember(dest => dest.ImgagePath, act => act.MapFrom(src => src.ImgagePath))
+                .ForMember(dest => dest.ImagePath, act => act.MapFrom(src => src.ImagePath))
                 .ForMember(dest => dest.VideoPath, act => act.MapFrom(src => src.VideoPath))
                 .ForMember(dest => dest.MovieCasts, act => act.MapFrom(src => src.MovieCasts))
                 .ForMember(dest => dest.MovieGenres, act => act.MapFrom(src => src.MovieGenres))

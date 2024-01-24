@@ -12,11 +12,12 @@ namespace Project.BLL.SeviceInjections
 {
     public static class DbContextService
     {
+        
         public static IServiceCollection AddDbContextService(this IServiceCollection services)
         {
             ServiceProvider provider = services.BuildServiceProvider();
-            IConfiguration? configuration = provider.GetService<IConfiguration?>();
-            services.AddDbContextPool<MyContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("MyContext")).UseLazyLoadingProxies());
+            IConfiguration? configuration = provider.GetService<IConfiguration>();
+            services.AddDbContextPool<MyContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("MyConnection")).UseLazyLoadingProxies());
             return services;
         }
     }
