@@ -135,7 +135,7 @@ namespace Project.COREMVC.Controllers
                     {
                         return RedirectToAction("Member"); //Todo watch list yönledir
                     }
-                    return RedirectToAction("Panel"); //Todo Panel yerine baþka birþey yazýcaz
+                    return RedirectToAction("Register"); //Todo Panel yerine baþka birþey yazýcaz
                 }
                 else if (result.IsNotAllowed)
                 {
