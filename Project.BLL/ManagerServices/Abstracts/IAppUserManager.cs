@@ -1,4 +1,5 @@
-﻿using Project.BLL.DTOClasses;
+﻿using Microsoft.AspNetCore.Identity;
+using Project.BLL.DTOClasses;
 using Project.ENTITIES.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,6 @@ using System.Threading.Tasks;
 namespace Project.BLL.ManagerServices.Abstracts
 {
     public interface IAppUserManager : IManager<AppUserDTO, AppUser>
-    {
+    {       
     }
 }

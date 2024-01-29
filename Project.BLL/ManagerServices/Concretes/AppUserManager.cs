@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Abstracts;
 using Project.DAL.Repositories.Abstracts;
@@ -21,5 +23,6 @@ namespace Project.BLL.ManagerServices.Concretes
             _appRep = appRep;
 
         }
+       
     }
 }
