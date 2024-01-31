@@ -15,11 +15,11 @@ namespace Project.COREMVC.Controllers
         private readonly ILogger<HomeController> _logger;
 
         readonly UserManager<AppUser> _userManager;
-        readonly RoleManager<IdentityRole<int>> _roleManager;
+        readonly RoleManager<AppRole> _roleManager;
         readonly SignInManager<AppUser> _signInManager;
 
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, RoleManager<IdentityRole<int>> roleManager, SignInManager<AppUser> signInManager)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, SignInManager<AppUser> signInManager)
         {
             _logger = logger;
             _userManager = userManager;

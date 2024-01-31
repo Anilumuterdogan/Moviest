@@ -1,4 +1,6 @@
-﻿using Project.ENTITIES.CoreInterfaces;
+﻿using Microsoft.AspNetCore.Identity;
+using Project.ENTITIES.CoreInterfaces;
+using Project.ENTITIES.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
