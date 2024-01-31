@@ -10,29 +10,8 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 
-//builder.Services.AddIdentity<AppUser, IdentityRole>(x =>
-//{
-//    x.Password.RequiredLength = 3;
-//    x.Password.RequireDigit = false;
-//    x.Password.RequireLowercase = false;
-//    x.Password.RequireUppercase = false;
-//    x.Password.RequireNonAlphanumeric = false;
-//    x.Lockout.MaxFailedAccessAttempts = 5;   
 
-//}).AddEntityFrameworkStores<MyContext>();
-
-builder.Services.ConfigureApplicationCookie(x =>
-{
-    x.Cookie.HttpOnly = true;
-    x.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-    x.Cookie.Name = "CyberSelf";
-    x.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-    x.Cookie.SameSite = SameSiteMode.Strict;
-    x.LoginPath = new PathString("/Home/SignIn");
-    x.AccessDeniedPath = new PathString("/Home/AccessDenied");
-});
-
-
+builder.Services.ConfigureApplicationCookie();
 builder.Services.AddIdentityServices();
 
 builder.Services.AddDbContextService();
