@@ -46,8 +46,8 @@ namespace Project.COREMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserRegisterModel model) 
         {
-           if(ModelState.IsValid) 
-            {
+           //if(ModelState.IsValid) 
+            //{
                 AppUser appUser = new()
                 {
                     UserName = model.UserName,
@@ -77,7 +77,7 @@ namespace Project.COREMVC.Controllers
                 {
                     ModelState.AddModelError("", error.Description);
                 }
-            }
+            //}
 
             return View();
         }

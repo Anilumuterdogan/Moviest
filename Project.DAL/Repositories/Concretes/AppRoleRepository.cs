@@ -10,14 +10,13 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.Repositories.Concretes
 {
-    public class AppUserRepository:BaseRepository<AppUser>, IAppUserRepository
+    public class AppRoleRepository: BaseRepository<AppRole>, IAppRoleRepository
     {
-        UserManager<AppUser> _userManager;
+        RoleManager<AppRole> _roleManager;
 
-        public AppUserRepository(MyContext db, UserManager<AppUser> userManager):base(db) 
+        public AppRoleRepository(MyContext db,RoleManager<AppRole> roleManager):base(db)
         {
-            _userManager = userManager;
+            _roleManager = roleManager;
         }
-
     }
 }

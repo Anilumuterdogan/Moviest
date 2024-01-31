@@ -17,10 +17,10 @@ namespace Project.BLL.ManagerServices.Concretes
     {
         // ! Liskov's Substitution
 
-        IAppUserRepository _appRep;
-        public AppUserManager(IAppUserRepository appRep, IMapper mapper) : base(appRep, mapper)
+        IAppUserRepository _appUserRep;
+        public AppUserManager(IAppUserRepository appUserRep, IMapper mapper) : base(appUserRep, mapper)
         {
-            _appRep = appRep;
+            _appUserRep = appUserRep;
 
         }
        

@@ -16,10 +16,12 @@ namespace Project.BLL.SeviceInjections
             services.AddScoped(typeof(IManager<,>), typeof(BaseManager<,>));
 
             services.AddScoped<IAppUserManager, AppUserManager>();
+            services.AddScoped<IAppRoleManager, AppRoleManager>();
+            services.AddScoped<IAppUserRoleManager, AppUserRoleManager>();
+            services.AddScoped<IProfileManager, ProfileManager>();
             services.AddScoped<ICastManager, CastManager>();
             services.AddScoped<IGenreManager, GenreManager>();
             services.AddScoped<IMovieCastManager, MovieCastManager>();
-            services.AddScoped<IProfileManager, ProfileManager>();
             services.AddScoped<IMovieGenreManager, MovieGenreManager>();
             services.AddScoped<IMovieManager, MovieManager>();
             return services;

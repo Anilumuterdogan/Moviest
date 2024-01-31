@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace Project.CONF.Configurations
 {
-    public class AppUserConfiguration : BaseConfiguration<AppUser>
+    public class AppRoleConfiguration : BaseConfiguration<AppRole>
     {
-        public override void Configure(EntityTypeBuilder<AppUser> builder)
+        public override void Configure(EntityTypeBuilder<AppRole> builder)
         {
             base.Configure(builder);
             builder.Ignore(x => x.ID);
-            builder.HasOne(x=> x.Profile).WithOne(x=> x.AppUser).HasForeignKey<AppUserProfile>(x=> x.ID);
-            builder.HasMany(x=> x.UserRoles).WithOne(x=> x.User).HasForeignKey(x=> x.UserId).IsRequired();
-
+            builder.HasMany(x => x.UserRoles).WithOne(x => x.Role).HasForeignKey(x => x.RoleId).IsRequired();
         }
     }
 }

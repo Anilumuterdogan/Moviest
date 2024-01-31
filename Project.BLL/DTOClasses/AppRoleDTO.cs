@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.DTOClasses
 {
-    public class AppUserDTO : BaseDTO
+    public class AppRoleDTO : BaseDTO
     {
-        public string UserName { get; set; }
-        public string UserPassword { get; set; }
-
+        public string Name { get; set; }
         //Relational Properties
-        public AppUserProfileDTO AppUserProfile { get; set; }
         public AppUserRoleDTO UserRoleDTO { get; set; }
     }
 }

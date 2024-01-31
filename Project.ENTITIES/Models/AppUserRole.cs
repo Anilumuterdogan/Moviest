@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Models
 {
-    public class AppUser : IdentityUser<int>, IEntity
+    public class AppUserRole : IdentityUserRole<int>, IEntity
     {
-        public AppUser()
+        public AppUserRole()
         {
             CreatedDate = DateTime.UtcNow;
             Status = DataStatus.Inserted;
@@ -22,10 +22,9 @@ namespace Project.ENTITIES.Models
         public DateTime? DeletedDate { get; set; }
         public DataStatus Status { get; set; }
 
-
         //Relational Properties
-        public virtual AppUserProfile Profile { get; set; }
-        public virtual ICollection<AppUserRole> UserRoles { get; set; }
+        public virtual AppUser User { get; set; }
+        public virtual AppRole Role { get; set; }
 
     }
 }

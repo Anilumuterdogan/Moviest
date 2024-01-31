@@ -10,16 +10,16 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddIdentity<AppUser, IdentityRole>(x =>
-{
-    x.Password.RequiredLength = 3;
-    x.Password.RequireDigit = false;
-    x.Password.RequireLowercase = false;
-    x.Password.RequireUppercase = false;
-    x.Password.RequireNonAlphanumeric = false;
-    x.Lockout.MaxFailedAccessAttempts = 5;   
+//builder.Services.AddIdentity<AppUser, IdentityRole>(x =>
+//{
+//    x.Password.RequiredLength = 3;
+//    x.Password.RequireDigit = false;
+//    x.Password.RequireLowercase = false;
+//    x.Password.RequireUppercase = false;
+//    x.Password.RequireNonAlphanumeric = false;
+//    x.Lockout.MaxFailedAccessAttempts = 5;   
 
-}).AddEntityFrameworkStores<MyContext>();
+//}).AddEntityFrameworkStores<MyContext>();
 
 builder.Services.ConfigureApplicationCookie(x =>
 {

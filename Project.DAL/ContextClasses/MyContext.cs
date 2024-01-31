@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.ContextClasses
 {
-    public class MyContext : IdentityDbContext<AppUser,IdentityRole<int>,int>
+    public class MyContext : IdentityDbContext<AppUser,AppRole,int, IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         public MyContext(DbContextOptions<MyContext> opt) : base(opt) 
         {
@@ -22,7 +22,10 @@ namespace Project.DAL.ContextClasses
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
             builder.ApplyConfiguration(new AppUserConfiguration());
+            builder.ApplyConfiguration(new AppRoleConfiguration());
+            builder.ApplyConfiguration(new AppUserRoleConfiguration());
             builder.ApplyConfiguration(new AppUserProfileConfiguration());
             builder.ApplyConfiguration(new CastConfiguration());
             builder.ApplyConfiguration(new GenreConfiguration());
@@ -37,6 +40,8 @@ namespace Project.DAL.ContextClasses
             MovieGenreDataSeedExtension.SeedMovieGenres(builder);
         }
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<AppRole> AppRoles { get; set; }
+        public DbSet<AppUserRole> AppUserRoles { get; set; }
         public DbSet<AppUserProfile> Profiles { get; set; }
         public DbSet<Cast> Casts { get; set; }
         public DbSet<Genre> Genres { get; set; }
