@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Abstracts;
+using Project.BLL.Mapping;
 using Project.DAL.Repositories.Abstracts;
 using Project.ENTITIES.Models;
 using System;
@@ -19,12 +20,16 @@ namespace Project.BLL.ManagerServices.Concretes
     public class AppUserManager : BaseManager<AppUserDTO, AppUser>, IAppUserManager
     {
         // ! Liskov's Substitution
-
+        readonly UserManager<AppUser> _userManager;
+        readonly IMapper _mapper;
         IAppUserRepository _appUserRep;
-        public AppUserManager(IAppUserRepository appUserRep, IMapper mapper) : base(appUserRep, mapper)
+
+        public AppUserManager(IAppUserRepository appUserRep, IMapper mapper, UserManager<AppUser> userManager) : base(appUserRep, mapper)
         {
             _appUserRep = appUserRep;
-
+            _userManager = userManager;
+            _mapper = mapper;
+            
         }
 
         public IdentityOptions Value => throw new NotImplementedException();
@@ -37,6 +42,20 @@ namespace Project.BLL.ManagerServices.Concretes
         public Task<IdentityResult> CreateAsync(AppUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+            
+        }
+
+        public async Task<string> CreateAsync(AppUserDTO user)
+        {
+           IdentityResult result = await _userManager.CreateAsync(_mapper.Map<AppUser>(user),user.UserPassword);
+            if (result.Succeeded)
+            {
+                return "Kayıt başarılı.";
+            }
+            else
+            {
+                return "Kayıt başarısız!";
+            }
         }
 
         public Task<IdentityResult> DeleteAsync(AppUser user, CancellationToken cancellationToken)

@@ -13,6 +13,6 @@ namespace Project.BLL.DTOClasses
 
         //Relational Properties
         public AppUserProfileDTO AppUserProfile { get; set; }
-        public AppUserRoleDTO UserRoleDTO { get; set; }
+        
     }
 }

@@ -14,6 +14,6 @@ using System.Threading.Tasks;
 namespace Project.BLL.ManagerServices.Abstracts
 {
     public interface IAppUserManager : IManager<AppUserDTO, AppUser>,IUserStore<AppUser>,IOptions<IdentityOptions>,IPasswordHasher<AppUser>,IEnumerable<IUserValidator<AppUser>>,IEnumerable<IPasswordValidator<AppUser>>,ILookupNormalizer,IServiceProvider,ILogger<AppUserManager> 
-    {       
+    {       public Task<string> CreateAsync(AppUserDTO user);
     }
 }

@@ -25,7 +25,7 @@ namespace Project.ENTITIES.Models
 
         //Relational Properties
         public virtual AppUserProfile Profile { get; set; }
-        public virtual ICollection<AppUserRole> UserRoles { get; set; }
+        
 
     }
 }

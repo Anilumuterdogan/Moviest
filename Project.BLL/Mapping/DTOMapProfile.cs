@@ -13,30 +13,17 @@ namespace Project.BLL.Mapping
     {
         public DTOMapProfile()
         {
+            
             #region AppUserDTOMapping
             CreateMap<AppUser, AppUserDTO>()
                 .ForMember(dest => dest.UserName, act => act.MapFrom(src => src.UserName))
                 .ForMember(dest => dest.UserPassword, act => act.MapFrom(src => src.PasswordHash))
                 .ForMember(dest => dest.AppUserProfile, act => act.MapFrom(src => src.Profile))
-                .ForMember(dest => dest.UserRoleDTO, act => act.MapFrom(src => src.UserRoles))
+                
                 .ReverseMap();
             #endregion
 
-            #region AppRoleDTOMapping
-            CreateMap<AppRole, AppRoleDTO>()
-                .ForMember(dest => dest.Name, act => act.MapFrom(src => src.Name))
-                .ForMember(dest => dest.UserRoleDTO, act => act.MapFrom(src => src.UserRoles))
-                .ReverseMap();
-            #endregion
-
-            #region AppUserRoleDTOMapping
-            CreateMap<AppUserRole, AppUserRoleDTO>()
-                .ForMember(dest => dest.UserId, act => act.MapFrom(src => src.UserId))
-                .ForMember(dest => dest.RoleId, act => act.MapFrom(src => src.RoleId))
-                .ForMember(dest => dest.AppRoleDTO, act => act.MapFrom(src => src.Role))
-                .ForMember(dest => dest.AppUserDTO, act => act.MapFrom(src => src.User))
-                .ReverseMap();
-            #endregion
+           
 
             #region AppUserProfileDTOMapping
             CreateMap<AppUserProfile, AppUserProfileDTO>()

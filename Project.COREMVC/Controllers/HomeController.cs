@@ -1,5 +1,7 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Concretes;
 using Project.COMMON.Tools;
 using Project.COREMVC.Models;
@@ -8,6 +10,7 @@ using Project.ENTITIES.Models;
 using System.Diagnostics;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
+
 namespace Project.COREMVC.Controllers
 {
     public class HomeController : Controller
@@ -15,16 +18,18 @@ namespace Project.COREMVC.Controllers
         private readonly ILogger<HomeController> _logger;
 
         readonly UserManager<AppUser> _userManager;
-        readonly RoleManager<AppRole> _roleManager;
+        readonly RoleManager<IdentityRole<int>> _roleManager;
         readonly SignInManager<AppUser> _signInManager;
+        
 
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, SignInManager<AppUser> signInManager)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, RoleManager<IdentityRole<int>> roleManager, SignInManager<AppUser> signInManager)
         {
             _logger = logger;
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
+            
         }
 
         public IActionResult Privacy()
@@ -47,14 +52,17 @@ namespace Project.COREMVC.Controllers
         public async Task<IActionResult> Register(UserRegisterModel model) 
         {
            //if(ModelState.IsValid) 
-            //{
+          // {
                 AppUser appUser = new()
                 {
                     UserName = model.UserName,
                     Email = model.Email,
                 };
 
-                IdentityResult result = await _userManager.CreateAsync(appUser,model.Password);
+            
+                IdentityResult result = await _userManager.CreateAsync(appUser, model.Password);
+           
+                
 
                 if(result.Succeeded) 
                 {
@@ -73,11 +81,18 @@ namespace Project.COREMVC.Controllers
                     return RedirectToAction("RedirectPanel");
 
                 }
+                else if (!result.Succeeded)
+                {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                 }
                 foreach (IdentityError error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }
-            //}
+          // }
 
             return View();
         }
@@ -116,7 +131,7 @@ namespace Project.COREMVC.Controllers
         {
             if (ModelState.IsValid) 
             {
-                AppUser appUser = await _userManager.FindByNameAsync(model.UserName); 
+                AppUser appUser = await _userManager.FindByNameAsync(model.UserName);
 
                 SignInResult result = await _signInManager.PasswordSignInAsync(appUser, model.Password, model.RememberMe, true);
                 if(result.Succeeded)

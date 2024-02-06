@@ -22,8 +22,7 @@ namespace Project.BLL.SeviceInjections
             services.AddScoped<IMovieCastRepository, MovieCastRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
             services.AddScoped<IProfileRepository, ProfileRepository>();
-            services.AddScoped<IAppRoleRepository, AppRoleRepository>();
-            services.AddScoped<IAppUserRoleRepository, AppUserRoleRepository>();
+            
             return services;
         }
     }
