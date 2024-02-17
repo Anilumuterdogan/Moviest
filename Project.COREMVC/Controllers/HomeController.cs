@@ -51,20 +51,21 @@ namespace Project.COREMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserRegisterModel model) 
         {
-           //if(ModelState.IsValid) 
-          // {
+          
                 AppUser appUser = new()
                 {
                     UserName = model.UserName,
                     Email = model.Email,
                 };
 
-            
+            if (model.Password is null)
+            {
+                TempData["Message"] = "Password!!"; 
+            }
+            else
+            {
                 IdentityResult result = await _userManager.CreateAsync(appUser, model.Password);
-           
-                
-
-                if(result.Succeeded) 
+                if (result.Succeeded)
                 {
                     #region RolKontrolIslemi
                     IdentityRole<int> appRole = await _roleManager.FindByNameAsync("Member");
@@ -83,18 +84,24 @@ namespace Project.COREMVC.Controllers
                 }
                 else if (!result.Succeeded)
                 {
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
                 }
-                 }
                 foreach (IdentityError error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }
-          // }
+                
 
-            return View();
+                
+            }
+            return View(model);
+
+
+
+
         }
 
         public async Task<IActionResult> ConfirmEmail(Guid specId, int id)
@@ -144,7 +151,7 @@ namespace Project.COREMVC.Controllers
                     IList<string> roles = await _userManager.GetRolesAsync(appUser);
                     if (roles.Contains("Admin"))
                     {
-                        return RedirectToAction("AdminPanel");
+                        return RedirectToAction("Index");
                     }
                     else if (roles.Contains("Member"))
                     {
