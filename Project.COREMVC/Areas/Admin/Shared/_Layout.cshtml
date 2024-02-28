@@ -44,10 +44,7 @@
 
             <span>
                 <ul class="pull-right top-menu">
-                    <li>
-                        <a asp-action="SignIn" asp-controller="Home">Giriş Yap</a>
-
-                    </li>
+                    
                     <li>
                         <a asp-action="Register" asp-controller="Home">Kayıt Ol</a>
                     </li>
@@ -64,18 +61,36 @@
                         <input type="text" class="form-control search" placeholder="Search">
                     </li>
                     <!-- user login dropdown start-->
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <img alt="" src="/OuterTools/img/avatar1_small.jpg">
+                                    <span class="username">@User.Identity.Name</span>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu extended logout">
+                                    <div class="log-arrow-up"></div>
 
-                            <span class="username">Watchlist</span>
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu extended logout">
-                            <div class="log-arrow-up"></div>
-                            <li><a href="#"><i class=" icon-suitcase"></i>MyList</a></li>
-                            <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
-                        </ul>
-                    </li>
+                                    @RenderSection("Sepet", false)
+
+                                    <li><a asp-controller="Home" asp-action="SignOut"><i class="icon-key"></i> Log Out</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <button class="btn btn-success "><a asp-controller="Home" asp-action="SignIn">Sign-In</a> </button>
+
+                            </li>
+                            <li>
+                                @RenderSection("Sepet", false)
+                            </li>
+                        }
+                    }
+
                     <!-- user login dropdown end -->
                 </ul>
                 <!--search & user info end-->

@@ -151,7 +151,7 @@ namespace Project.COREMVC.Controllers
                     IList<string> roles = await _userManager.GetRolesAsync(appUser);
                     if (roles.Contains("Admin"))
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("RedirectPanel");
                     }
                     else if (roles.Contains("Member"))
                     {
