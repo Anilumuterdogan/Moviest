@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Abstracts;
-using Project.COREMVC.Areas.Models.Genres;
+using Project.COREMVC.Areas.Admin.Models.Genres.RequestModels;
 using Project.ENTITIES.Models;
 
 namespace Project.COREMVC.Areas.Admin.Controllers

@@ -1,4 +1,4 @@
-﻿namespace Project.COREMVC.Areas.Models.Genres
+﻿namespace Project.COREMVC.Areas.Admin.Models.Genres.RequestModels
 {
     public class CreateGenreRequestModel
     {
