@@ -1,13 +1,13 @@
-﻿@model GenreSharedPageVM
+﻿@model Genre
 
 
-
+<link href="/OuterTools/css/bootstrap.min.css" rel="stylesheet">
 <form asp-action="UpdateGenre" asp-controller="Genre" method="post" class="p-3 w-75 m-auto">
 
-    <input type="hidden" asp-for="Genre.ID" />
+    <input type="hidden" asp-for="ID" />
     <div class="mb-3">
         <label>Genre ismini giriniz</label>
-        <input asp-for="Genre.GenreName" class="form-control" />
+        <input asp-for="GenreName" class="form-control" />
     </div>
 
     <div class="mb-3">

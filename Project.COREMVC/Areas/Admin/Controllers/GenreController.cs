@@ -6,6 +6,7 @@ using Project.BLL.ManagerServices.Abstracts;
 using Project.COREMVC.Areas.Admin.Models.Genres.PageVms;
 using Project.COREMVC.Areas.Admin.Models.Genres.PureVms;
 using Project.COREMVC.Areas.Admin.Models.Genres.RequestModels;
+using Project.COREMVC.Areas.Admin.Models.MapperClasses;
 using Project.ENTITIES.Models;
 
 namespace Project.COREMVC.Areas.Admin.Controllers
@@ -59,13 +60,15 @@ namespace Project.COREMVC.Areas.Admin.Controllers
         
         public async Task<IActionResult> UpdateGenre (int id)
         {
-            _mapper.Map<Genre>(await _genreManager.FindAsync(id));
-            return RedirectToAction("UpdateGenre");
+            
+            
+            
+            return View(_mapper.Map<Genre>(await _genreManager.FindAsync(id)));
 
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateGenre (GenreSharedPageVM model)
+        public async Task<IActionResult> UpdateGenre (Genre model)
         {
             await _genreManager.UpdateAsync(_mapper.Map<GenreDTO>(model));
             return RedirectToAction("Index");
