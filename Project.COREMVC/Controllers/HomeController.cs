@@ -211,6 +211,6 @@ namespace Project.COREMVC.Controllers
             return RedirectToAction("SignIn");
         }
 
-        //sa
+        //logout düzelt ve homecontroller area ve aouthorize ver
     }
 }
