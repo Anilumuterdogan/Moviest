@@ -1,0 +1,17 @@
+﻿@model GenreSharedPageVM
+
+
+
+<form asp-action="UpdateGenre" asp-controller="Genre" method="post" class="p-3 w-75 m-auto">
+
+    <input type="hidden" asp-for="Genre.ID" />
+    <div class="mb-3">
+        <label>Genre ismini giriniz</label>
+        <input asp-for="Genre.GenreName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary">Genre update</button>
+    </div>
+</form>
+

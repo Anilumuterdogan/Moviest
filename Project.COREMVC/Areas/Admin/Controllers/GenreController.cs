@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Abstracts;
+using Project.COREMVC.Areas.Admin.Models.Genres.PageVms;
+using Project.COREMVC.Areas.Admin.Models.Genres.PureVms;
 using Project.COREMVC.Areas.Admin.Models.Genres.RequestModels;
 using Project.ENTITIES.Models;
 
@@ -32,11 +34,11 @@ namespace Project.COREMVC.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateGenre(CreateGenreRequestModel model)
+        public async Task<IActionResult> CreateGenre(GenreRequestPageVM model)
         {
             Genre genre = new()
             {
-                GenreName = model.GenreName
+                GenreName = model.Genre.GenreName
             };
             await _genreManager.AddAsync(_mapper.Map<GenreDTO>(genre));
             return RedirectToAction("Index");
@@ -45,6 +47,27 @@ namespace Project.COREMVC.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteGenre(int id) 
         {
             _genreManager.Delete(await _genreManager.FindAsync(id));
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DestroyGenre (int id) 
+        {
+           _genreManager.Destroy(await _genreManager.FindAsync(id));
+            return RedirectToAction("Index");
+        }
+
+        
+        public async Task<IActionResult> UpdateGenre (int id)
+        {
+            _mapper.Map<Genre>(await _genreManager.FindAsync(id));
+            return RedirectToAction("UpdateGenre");
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateGenre (GenreSharedPageVM model)
+        {
+            await _genreManager.UpdateAsync(_mapper.Map<GenreDTO>(model));
             return RedirectToAction("Index");
         }
     }
