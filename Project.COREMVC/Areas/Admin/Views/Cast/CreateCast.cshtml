@@ -1,0 +1,38 @@
+﻿@model CastRequestPageVM
+
+<h3>Press for Get Genres <a asp-controller="Cast" asp-action="Index">Press</a></h3>
+<link href="/OuterTools/css/bootstrap.min.css" rel="stylesheet">
+<form asp-controller="Cast" asp-action="CreateCast" method="post" class="form">
+
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Cast First Name</label>
+        <input asp-for="Cast.FirstName" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Cast Last Name</label>
+        <input asp-for="Cast.LastName" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Cast Description</label>
+        <input asp-for="Cast.Description" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Cast Image Path</label>
+        <input asp-for="Cast.ImagePath" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Cast Video Path</label>
+        <input asp-for="Cast.VideoPath" class="form-control">
+    </div>
+
+
+
+
+    <button class="btn btn-primary">
+        Add Cast
+    </button>
+
+
+
+</form>

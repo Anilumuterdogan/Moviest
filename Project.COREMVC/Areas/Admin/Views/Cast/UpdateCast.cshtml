@@ -1,0 +1,33 @@
+﻿@model Cast
+
+
+<link href="/OuterTools/css/bootstrap.min.css" rel="stylesheet">
+<form asp-action="UpdateCast" asp-controller="Cast" method="post" class="p-3 w-75 m-auto">
+
+    <input type="hidden" asp-for="ID" />
+    <div class="mb-3">
+        <label>Cast First Name giriniz</label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Cast LastName giriniz</label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Cast Description giriniz</label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Cast ImagePath giriniz</label>
+        <input asp-for="ImagePath" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Cast VideoPath giriniz</label>
+        <input asp-for="VideoPath" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary">Cast update</button>
+    </div>
+</form>
+

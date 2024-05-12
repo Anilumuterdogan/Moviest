@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Project.BLL.DTOClasses;
@@ -151,7 +152,7 @@ namespace Project.COREMVC.Controllers
                     IList<string> roles = await _userManager.GetRolesAsync(appUser);
                     if (roles.Contains("Admin"))
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("AdminIndex");
                     }
                     else if (roles.Contains("Member"))
                     {
@@ -196,6 +197,12 @@ namespace Project.COREMVC.Controllers
         }
 
         public IActionResult MailPanel()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminIndex()
         {
             return View();
         }
