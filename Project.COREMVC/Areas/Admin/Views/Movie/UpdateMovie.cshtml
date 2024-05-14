@@ -1,0 +1,30 @@
+﻿@model Movie
+
+
+<link href="/OuterTools/css/bootstrap.min.css" rel="stylesheet">
+<form asp-action="UpdateMovie" asp-controller="Movie" method="post" class="p-3 w-75 m-auto">
+
+    <input type="hidden" asp-for="ID" />
+    <div class="mb-3">
+        <label>Movie Name giriniz</label>
+        <input asp-for="MovieName" class="form-control" />
+    </div>
+   
+    <div class="mb-3">
+        <label>Movie Description giriniz</label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Movie ImagePath giriniz</label>
+        <input asp-for="ImagePath" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Movie VideoPath giriniz</label>
+        <input asp-for="VideoPath" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary">Movie update</button>
+    </div>
+</form>
+

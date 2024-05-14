@@ -44,7 +44,7 @@ namespace Project.COREMVC.Areas.Admin.Controllers
                 LastName = model.Cast.LastName,
                 Description = model.Cast.Description,
                 ImagePath = model.Cast.ImagePath,
-                VideoPath = model.Cast.VideoPath,
+                VideoPath = model.Cast.VideoPath
             };
             await _castManager.AddAsync(_mapper.Map<CastDTO>(cast));
             return RedirectToAction("Index");

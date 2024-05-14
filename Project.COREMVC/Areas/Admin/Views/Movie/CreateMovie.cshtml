@@ -1,0 +1,35 @@
+﻿@model MovieRequestPageVM
+
+<h3>Press for Get Movies <a asp-controller="Movie" asp-action="Index">Press</a></h3>
+<link href="/OuterTools/css/bootstrap.min.css" rel="stylesheet">
+<form asp-controller="Movie" asp-action="CreateMovie" method="post" class="form">
+
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Movie Name</label>
+        <input asp-for="Movie.MovieName" class="form-control">
+    </div>
+   
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Movie Description</label>
+        <input asp-for="Movie.Description" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Movie Image Path</label>
+        <input asp-for="Movie.ImagePath" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Movie Video Path</label>
+        <input asp-for="Movie.VideoPath" class="form-control">
+    </div>
+
+
+
+
+    <button class="btn btn-primary">
+        Add Movie
+    </button>
+
+
+
+</form>
