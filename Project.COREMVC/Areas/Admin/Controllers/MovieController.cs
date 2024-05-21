@@ -72,5 +72,7 @@ namespace Project.COREMVC.Areas.Admin.Controllers
             await _movieManager.UpdateAsync(_mapper.Map<MovieDTO>(model));
             return RedirectToAction("Index");
         }
+
+
     }
 }
