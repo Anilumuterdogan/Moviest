@@ -41,8 +41,22 @@ namespace Project.COREMVC.Areas.Admin.Controllers
 
         public IActionResult CreateMovie()
         {
-            ViewBag.Casts = new SelectList(_castManager.GetAll());  
-            ViewBag.Genres = new SelectList(_genreManager.GetAll());
+            //ViewBag.Casts = new SelectList(_castManager.GetAll());  
+            //ViewBag.Genres = new SelectList(_genreManager.GetAll());
+
+            var model = new MovieRequestPageVM
+            {
+                Casts = _castManager.Select(c => new SelectListItem
+                {
+                    Value = c.ID.ToString(),
+                    Text = c.FirstName
+                }).ToList(),
+                Genres = _genreManager.Select(g => new SelectListItem
+                {
+                    Value = g.ID.ToString(),
+                    Text = g.GenreName
+                }).ToList()
+            };
 
             return View();
         }
@@ -75,8 +89,19 @@ namespace Project.COREMVC.Areas.Admin.Controllers
                 
             }
 
-            ViewBag.Casts = new SelectList(_castManager.GetAll());
-            ViewBag.Genres = new SelectList(_genreManager.GetAll());
+            //ViewBag.Casts = new SelectList(_castManager.GetAll());
+            //ViewBag.Genres = new SelectList(_genreManager.GetAll());
+            model.Casts = _castManager.Select(c => new SelectListItem
+            {
+                Value = c.ID.ToString(),
+                Text = c.FirstName
+            }).ToList();
+
+            model.Genres = _genreManager.Select(g => new SelectListItem
+            {
+                Value = g.ID.ToString(),
+                Text = g.GenreName
+            }).ToList();
 
             return RedirectToAction("Index");
         }
