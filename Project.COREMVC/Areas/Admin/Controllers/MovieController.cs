@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Abstracts;
 using Project.BLL.ManagerServices.Concretes;
@@ -17,13 +18,17 @@ namespace Project.COREMVC.Areas.Admin.Controllers
         IMapper _mapper;
         readonly ICastManager _castManager;
         readonly IGenreManager _genreManager;
+        readonly IMovieCastManager _movieCastManager;
+        readonly IMovieGenreManager _movieGenreManager;
 
-        public MovieController(IMovieManager movieManager, IMapper mapper, ICastManager castManager, IGenreManager genreManager)
+        public MovieController(IMovieManager movieManager, IMapper mapper, ICastManager castManager, IGenreManager genreManager, IMovieCastManager movieCastManager, IMovieGenreManager movieGenreManager)
         {
             _movieManager = movieManager;
             _mapper = mapper;
             _castManager = castManager;
             _genreManager = genreManager;
+            _movieCastManager = movieCastManager;
+            _movieGenreManager = movieGenreManager;
         }
 
         public IActionResult Index()
@@ -36,21 +41,43 @@ namespace Project.COREMVC.Areas.Admin.Controllers
 
         public IActionResult CreateMovie()
         {
+            ViewBag.Casts = new SelectList(_castManager.GetAll());  
+            ViewBag.Genres = new SelectList(_genreManager.GetAll());
+
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMovie(MovieRequestPageVM model) 
+        public async Task<IActionResult> CreateMovie(MovieRequestPageVM model , int[] selectedCasts, int[] selectedGenres) 
         {
-            Movie movie = new()
+            if (ModelState.IsValid) 
             {
-                MovieName = model.Movie.MovieName,
-                Description = model.Movie.Description,
-                ImagePath = model.Movie.ImagePath,
-                VideoPath = model.Movie.VideoPath
+                Movie movie = new()
+                {
+                    MovieName = model.Movie.MovieName,
+                    Description = model.Movie.Description,
+                    ImagePath = model.Movie.ImagePath,
+                    VideoPath = model.Movie.VideoPath
+
+                };
+                await _movieManager.AddAsync(_mapper.Map<MovieDTO>(movie));
+
+                foreach (var castId in selectedCasts)
+                {
+                    _movieCastManager.Add(new MovieCastDTO { MovieID = movie.ID, CastID = castId });
+                }
+                await _movieCastManager.AddAsync(_mapper.Map<MovieCastDTO>(selectedCasts));
+                foreach (var genretId in selectedGenres)
+                {
+                    _movieGenreManager.Add(new MovieGenreDTO { MovieID = movie.ID, GenreID = genretId});
+                }
+                await _movieGenreManager.AddAsync(_mapper.Map<MovieGenreDTO>(selectedGenres));
                 
-            };
-            await _movieManager.AddAsync(_mapper.Map<MovieDTO>(movie));
+            }
+
+            ViewBag.Casts = new SelectList(_castManager.GetAll());
+            ViewBag.Genres = new SelectList(_genreManager.GetAll());
+
             return RedirectToAction("Index");
         }
 
