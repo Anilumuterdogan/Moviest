@@ -15,11 +15,15 @@ namespace Project.COREMVC.Areas.Admin.Controllers
     {
         readonly IMovieManager _movieManager;
         IMapper _mapper;
+        readonly ICastManager _castManager;
+        readonly IGenreManager _genreManager;
 
-        public MovieController(IMovieManager movieManager, IMapper mapper)
+        public MovieController(IMovieManager movieManager, IMapper mapper, ICastManager castManager, IGenreManager genreManager)
         {
             _movieManager = movieManager;
             _mapper = mapper;
+            _castManager = castManager;
+            _genreManager = genreManager;
         }
 
         public IActionResult Index()
@@ -44,10 +48,13 @@ namespace Project.COREMVC.Areas.Admin.Controllers
                 Description = model.Movie.Description,
                 ImagePath = model.Movie.ImagePath,
                 VideoPath = model.Movie.VideoPath
+                
             };
             await _movieManager.AddAsync(_mapper.Map<MovieDTO>(movie));
             return RedirectToAction("Index");
         }
+
+        
 
         public async Task<IActionResult> DeleteMovie(int id) 
         {
