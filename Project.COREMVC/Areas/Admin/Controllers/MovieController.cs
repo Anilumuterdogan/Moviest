@@ -58,7 +58,7 @@ namespace Project.COREMVC.Areas.Admin.Controllers
                 }).ToList()
             };
 
-            return View();
+            return View(model);
         }
 
         [HttpPost]
@@ -86,7 +86,8 @@ namespace Project.COREMVC.Areas.Admin.Controllers
                     _movieGenreManager.Add(new MovieGenreDTO { MovieID = movie.ID, GenreID = genretId});
                 }
                 await _movieGenreManager.AddAsync(_mapper.Map<MovieGenreDTO>(selectedGenres));
-                
+
+                return RedirectToAction("Index");
             }
 
             //ViewBag.Casts = new SelectList(_castManager.GetAll());
@@ -103,7 +104,7 @@ namespace Project.COREMVC.Areas.Admin.Controllers
                 Text = g.GenreName
             }).ToList();
 
-            return RedirectToAction("Index");
+            return View(model);
         }
 
         

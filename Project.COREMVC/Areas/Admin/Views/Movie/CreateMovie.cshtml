@@ -24,12 +24,22 @@
     </div>
 
     <div class="form-group">
-        <label for="selectedCasts" class="control-label">Cast</label>
-        <select asp-for="SelectedCasts" class="form-control" asp-items="ViewBag.Casts" multiple="multiple"></select>
+        <label>Casts</label>
+        <select asp-for="SelectedCasts" class="form-control" multiple="multiple">
+            @foreach (var cast in Model.Casts)
+            {
+                <option value="@cast.Value">@cast.Text</option>
+            }
+        </select>
     </div>
     <div class="form-group">
-        <label for="selectedGenres" class="control-label">Genre</label>
-        <select asp-for="SelectedGenres" class="form-control" asp-items="ViewBag.Genres" multiple="multiple"></select>
+        <label>Genres</label>
+        <select asp-for="SelectedGenres" class="form-control" multiple="multiple">
+            @foreach (var genre in Model.Genres)
+            {
+                <option value="@genre.Value">@genre.Text</option>
+            }
+        </select>
     </div>
 
 
