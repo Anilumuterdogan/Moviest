@@ -23,26 +23,7 @@
         <input asp-for="Movie.VideoPath" class="form-control">
     </div>
 
-    <div class="form-group">
-        <label>Casts</label>
-        <select asp-for="SelectedCasts" class="form-control" multiple="multiple">
-            @foreach (var cast in Model.Casts)
-            {
-                <option value="@cast.Value">@cast.Text</option>
-            }
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Genres</label>
-        <select asp-for="SelectedGenres" class="form-control" multiple="multiple">
-            @foreach (var genre in Model.Genres)
-            {
-                <option value="@genre.Value">@genre.Text</option>
-            }
-        </select>
-    </div>
-
-
+  
 
 
     <button class="btn btn-primary">

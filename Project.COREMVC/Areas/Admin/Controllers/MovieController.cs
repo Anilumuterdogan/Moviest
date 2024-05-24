@@ -43,23 +43,16 @@ namespace Project.COREMVC.Areas.Admin.Controllers
 
         public IActionResult CreateMovie(int id)
         {
-            //ViewBag.Casts = new SelectList(_castManager.GetAll());  
-            //ViewBag.Genres = new SelectList(_genreManager.GetAll());
-
-            SharedVM model = new()
-            {
-                 =  id
-            };
-            return View(model);
+            
+            return View();
 
            
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMovie(MovieRequestPageVM model , int[] selectedCasts, int[] selectedGenres) 
+        public async Task<IActionResult> CreateMovie(MovieRequestPageVM model ) 
         {
-            if (ModelState.IsValid) 
-            {
+                       
                 Movie movie = new()
                 {
                     MovieName = model.Movie.MovieName,
@@ -70,37 +63,7 @@ namespace Project.COREMVC.Areas.Admin.Controllers
                 };
                 await _movieManager.AddAsync(_mapper.Map<MovieDTO>(movie));
 
-                foreach (var castId in selectedCasts)
-                {
-                    _movieCastManager.Add(new MovieCastDTO { MovieID = movie.ID, CastID = castId });
-                }
-                await _movieCastManager.AddAsync(_mapper.Map<MovieCastDTO>(selectedCasts));
-                foreach (var genretId in selectedGenres)
-                {
-                    _movieGenreManager.Add(new MovieGenreDTO { MovieID = movie.ID, GenreID = genretId});
-                }
-                await _movieGenreManager.AddAsync(_mapper.Map<MovieGenreDTO>(selectedGenres));
-
-                return RedirectToAction("Index");
-            }
-
-            //ViewBag.Casts = new SelectList(_castManager.GetAll());
-            //ViewBag.Genres = new SelectList(_genreManager.GetAll());
-            model.Casts = _castManager.Select(c => new SelectListItem
-            {
-                Value = c.ID.ToString(),
-                Text = c.FirstName
-            }).ToList();
-
-            model.Genres = _genreManager.Select(g => new SelectListItem
-            {
-                Value = g.ID.ToString(),
-                Text = g.GenreName
-            }).ToList();
-
-            
-
-            return View(model);
+            return RedirectToAction("Index");
         }
 
         
