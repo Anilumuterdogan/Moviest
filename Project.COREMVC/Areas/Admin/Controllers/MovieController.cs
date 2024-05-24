@@ -18,19 +18,13 @@ namespace Project.COREMVC.Areas.Admin.Controllers
     {
         readonly IMovieManager _movieManager;
         IMapper _mapper;
-        readonly ICastManager _castManager;
-        readonly IGenreManager _genreManager;
-        readonly IMovieCastManager _movieCastManager;
-        readonly IMovieGenreManager _movieGenreManager;
+        
 
-        public MovieController(IMovieManager movieManager, IMapper mapper, ICastManager castManager, IGenreManager genreManager, IMovieCastManager movieCastManager, IMovieGenreManager movieGenreManager)
+        public MovieController(IMovieManager movieManager, IMapper mapper)
         {
             _movieManager = movieManager;
             _mapper = mapper;
-            _castManager = castManager;
-            _genreManager = genreManager;
-            _movieCastManager = movieCastManager;
-            _movieGenreManager = movieGenreManager;
+         
         }
 
         public IActionResult Index()
@@ -41,7 +35,7 @@ namespace Project.COREMVC.Areas.Admin.Controllers
             return View(_mapper.Map<List<Movie>>(_movieManager.GetAll()));
         }
 
-        public IActionResult CreateMovie(int id)
+        public IActionResult CreateMovie()
         {
             
             return View();
