@@ -13,19 +13,20 @@ namespace Project.COREMVC.Areas.Admin.Controllers
     {
         IMapper _mapper;
         readonly IMovieGenreManager _movieGenreManager;
+        readonly IMovieManager _movieManager;
+        readonly IGenreManager _genreManager;
 
-        public MovieGenreController(IMapper mapper, IMovieGenreManager movieGenreManager)
+        public MovieGenreController(IMapper mapper, IMovieGenreManager movieGenreManager, IMovieManager movieManager, IGenreManager genreManager)
         {
             _mapper = mapper;
             _movieGenreManager = movieGenreManager;
+            _movieManager = movieManager;
+            _genreManager = genreManager;
         }
 
         public IActionResult Index()
-        {
-            if (!User.Identity.IsAuthenticated)
-                RedirectToAction("Index", "Home");
-
-            return View(_mapper.Map<List<MovieGenre>>(_movieGenreManager.GetAll()));
+        { 
+            return View();
         }
     }
 }
