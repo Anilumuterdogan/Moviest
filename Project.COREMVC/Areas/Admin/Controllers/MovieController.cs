@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Abstracts;
 using Project.BLL.ManagerServices.Concretes;
+using Project.COREMVC.Areas.Admin.Models.MovieGenres.ResponseModels;
 using Project.COREMVC.Areas.Admin.Models.Movies.PageVms;
+using Project.COREMVC.Areas.Admin.Models.Movies.PureVms;
 using Project.COREMVC.Areas.Admin.Models.Movies.SharedVMs;
 using Project.ENTITIES.Models;
 
@@ -17,14 +19,16 @@ namespace Project.COREMVC.Areas.Admin.Controllers
     public class MovieController : Controller
     {
         readonly IMovieManager _movieManager;
+        readonly IGenreManager _genreManager;
+        readonly IMovieGenreManager _movieGenreManager;
         IMapper _mapper;
-        
 
-        public MovieController(IMovieManager movieManager, IMapper mapper)
+        public MovieController(IMovieManager movieManager, IGenreManager genreManager, IMovieGenreManager movieGenreManager, IMapper mapper)
         {
             _movieManager = movieManager;
+            _genreManager = genreManager;
+            _movieGenreManager = movieGenreManager;
             _mapper = mapper;
-         
         }
 
         public IActionResult Index()
@@ -60,7 +64,25 @@ namespace Project.COREMVC.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        
+        public async Task<IActionResult> AddGenre(int id)
+        {
+
+            
+            return View(_mapper.Map<Movie>(await _movieManager.FindAsync(id)));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddGenre(MovieGenreResponseModel model)
+        {
+            MovieGenre movieGenre = new()
+            {
+                MovieID = model.MovieID,
+                GenreID = model.GenreID,
+            };
+            await _movieGenreManager.AddAsync(_mapper.Map<MovieGenreDTO>(movieGenre));
+            // _movieManager.Delete(await _movieManager.FindAsync(id));
+            return RedirectToAction("Index");
+        }
 
         public async Task<IActionResult> DeleteMovie(int id) 
         {
