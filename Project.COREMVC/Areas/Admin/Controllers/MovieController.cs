@@ -64,25 +64,7 @@ namespace Project.COREMVC.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> AddGenre(int id)
-        {
-
-            
-            return View(_mapper.Map<Movie>(await _movieManager.FindAsync(id)));
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddGenre(MovieGenreResponseModel model)
-        {
-            MovieGenre movieGenre = new()
-            {
-                MovieID = model.MovieID,
-                GenreID = model.GenreID,
-            };
-            await _movieGenreManager.AddAsync(_mapper.Map<MovieGenreDTO>(movieGenre));
-            // _movieManager.Delete(await _movieManager.FindAsync(id));
-            return RedirectToAction("Index");
-        }
+        
 
         public async Task<IActionResult> DeleteMovie(int id) 
         {

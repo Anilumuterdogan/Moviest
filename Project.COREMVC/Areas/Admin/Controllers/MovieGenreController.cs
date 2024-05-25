@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Abstracts;
 using Project.BLL.ManagerServices.Concretes;
+using Project.COREMVC.Areas.Admin.Models.MovieGenres.ResponseModels;
 using Project.COREMVC.Areas.Admin.Models.Movies.PageVms;
 using Project.COREMVC.Areas.Admin.Models.Movies.ResponseModels;
 using Project.ENTITIES.Models;
@@ -47,6 +49,26 @@ namespace Project.COREMVC.Areas.Admin.Controllers
 
 
             return View(mRp);
+        }
+
+        public async Task<IActionResult> AddGenre(int id)
+        {
+            await _genreManager.GetAll();
+
+            return View(_mapper.Map<Movie>(await _movieManager.FindAsync(id)));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddGenre(MovieGenreResponseModel model)
+        {
+            MovieGenre movieGenre = new()
+            {
+                MovieID = model.MovieID,
+                GenreID = model.GenreID,
+            };
+            await _movieGenreManager.AddAsync(_mapper.Map<MovieGenreDTO>(movieGenre));
+            // _movieManager.Delete(await _movieManager.FindAsync(id));
+            return RedirectToAction("Index");
         }
 
     }
