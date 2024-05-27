@@ -28,6 +28,7 @@ namespace Project.COREMVC.Areas.Admin.Controllers
                 RedirectToAction("Index", "Home");
 
             return View(_mapper.Map<List<Genre>>(_genreManager.GetAll()));
+
         }
 
         public IActionResult CreateGenre() 
