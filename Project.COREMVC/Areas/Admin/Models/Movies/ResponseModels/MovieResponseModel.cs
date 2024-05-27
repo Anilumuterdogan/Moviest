@@ -1,4 +1,4 @@
-﻿using Project.COREMVC.Areas.Admin.Models.MovieGenres.ResponseModels;
+﻿
 
 namespace Project.COREMVC.Areas.Admin.Models.Movies.ResponseModels
 {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Abstracts;
 using Project.BLL.ManagerServices.Concretes;
-using Project.COREMVC.Areas.Admin.Models.MovieGenres.ResponseModels;
+using Project.COREMVC.Areas.Admin.Models.Genres.PageVms;
 using Project.COREMVC.Areas.Admin.Models.Movies.PageVms;
 using Project.COREMVC.Areas.Admin.Models.Movies.PureVms;
 using Project.COREMVC.Areas.Admin.Models.Movies.SharedVMs;
@@ -64,8 +64,6 @@ namespace Project.COREMVC.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        
-
         public async Task<IActionResult> DeleteMovie(int id) 
         {
             _movieManager.Delete(await _movieManager.FindAsync(id));
@@ -90,6 +88,6 @@ namespace Project.COREMVC.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
+        
     }
 }
