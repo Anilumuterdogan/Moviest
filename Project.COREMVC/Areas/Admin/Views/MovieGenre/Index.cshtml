@@ -1,0 +1,36 @@
+﻿@model List<Movie>
+
+<link href="/OuterTools/css/bootstrap.min.css" rel="stylesheet">
+
+<section class="panel">
+    <header class="panel-heading">
+        Yeni Film eklemek icin <a asp-action="CreateMovie">tıklayınız</a>
+    </header>
+    <div class="panel-body">
+        <div class="adv-table">
+            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+                <thead>
+                    <tr>
+                        <th>Movie ID</th>
+                        <th>MovieName</th>
+                        <th class="hidden-phone">Genre Ekle</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (Movie item in Model)
+                    {
+                        <tr class="gradeX">
+                            <td>@item.ID</td>
+                            <td>@item.MovieName</td>
+                            <td class="center hidden-phone"><a asp-action="AddGenre" asp-route-id="@item.ID" class="btn btn-warning"> Genre Ekle </a></td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</section>
