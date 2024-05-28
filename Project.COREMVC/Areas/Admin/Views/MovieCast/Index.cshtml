@@ -11,7 +11,7 @@
                     <tr>
                         <th>Movie ID</th>
                         <th>MovieName</th>
-                        <th class="hidden-phone">Genre Ekle</th>
+                        <th class="hidden-phone">Cast Ekle</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,7 +21,7 @@
                         <tr class="gradeX">
                             <td>@item.ID</td>
                             <td>@item.MovieName</td>
-                            <td class="center hidden-phone"><a asp-action="AddGenre" asp-route-id="@item.ID" class="btn btn-warning"> Genre Ekle </a></td>
+                            <td class="center hidden-phone"><a asp-action="AddCast" asp-route-id="@item.ID" class="btn btn-warning"> Cast Ekle </a></td>
                         </tr>
                     }
 

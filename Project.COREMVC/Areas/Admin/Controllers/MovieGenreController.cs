@@ -45,7 +45,7 @@ namespace Project.COREMVC.Areas.Admin.Controllers
             MovieGenreSharedPageVM mGSPVM = new()
             {
                 MovieID = id,
-                Genres = genres,
+                Genres = genres
                 
             };
             TempData["id"] = id;
