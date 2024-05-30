@@ -59,7 +59,9 @@ namespace Project.COREMVC.Areas.Admin.Controllers
             {
                 MovieID = x,
                 CastID = model.CastID,
+                NameInMovie =model.NameInMovie
             };
+            
             await _movieCastManager.AddAsync(_mapper.Map<MovieCastDTO>(movieCast));
 
             return RedirectToAction("Index");
