@@ -126,6 +126,27 @@ namespace Project.COREMVC.Controllers
 
         public IActionResult SignIn(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                
+                var appUser = _userManager.GetUserAsync(User).Result;
+
+                if (appUser != null)
+                {
+                    
+                    var roles = _userManager.GetRolesAsync(appUser).Result;
+
+                    
+                    if (roles.Contains("Admin"))
+                    {
+                        return RedirectToAction("AdminIndex", "Home", new { area = "Admin" });
+                    }
+                    else if (roles.Contains("Member"))
+                    {
+                        return RedirectToAction("Member");
+                    }
+                }
+            }
             UserSignInRequestModel usModel = new()
             {
                 ReturnUrl = returnUrl
@@ -152,7 +173,7 @@ namespace Project.COREMVC.Controllers
                     IList<string> roles = await _userManager.GetRolesAsync(appUser);
                     if (roles.Contains("Admin"))
                     {
-                        return RedirectToAction("AdminIndex");
+                        return RedirectToAction("AdminIndex", "Home", new { area = "Admin" });
                     }
                     else if (roles.Contains("Member"))
                     {
