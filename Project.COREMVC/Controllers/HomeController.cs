@@ -156,9 +156,9 @@ namespace Project.COREMVC.Controllers
                     }
                     else if (roles.Contains("Member"))
                     {
-                        return RedirectToAction("Member"); //Todo watch list yönledir
+                        return RedirectToAction("Member"); 
                     }
-                    return RedirectToAction("Register"); //Todo Panel yerine baþka birþey yazýcaz
+                    return RedirectToAction("Register"); 
                 }
                 else if (result.IsNotAllowed)
                 {
@@ -218,6 +218,6 @@ namespace Project.COREMVC.Controllers
             return RedirectToAction("SignIn");
         }
 
-        //logout düzelt ve homecontroller area ve aouthorize ver
+        
     }
 }
