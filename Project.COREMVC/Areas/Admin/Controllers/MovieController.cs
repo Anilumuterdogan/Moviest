@@ -98,8 +98,17 @@ namespace Project.COREMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateMovie(Movie model)
+        public async Task<IActionResult> UpdateMovie(Movie model, IFormFile formFileImage, IFormFile formFileVideo)
         {
+            string extension = Path.GetExtension(formFileImage.FileName);
+            string path = $"{Directory.GetCurrentDirectory()}/wwwroot/images/{Guid.NewGuid()}{extension}";
+            FileStream stream = new FileStream(path, FileMode.Create);
+            formFileImage.CopyTo(stream);
+
+            string extension1 = Path.GetExtension(formFileVideo.FileName);
+            string path1 = $"{Directory.GetCurrentDirectory()}/wwwroot/videos/{Guid.NewGuid()}{extension1}";
+            FileStream stream1 = new FileStream(path1, FileMode.Create);
+            formFileImage.CopyTo(stream1);
             await _movieManager.UpdateAsync(_mapper.Map<MovieDTO>(model));
             return RedirectToAction("Index");
         }
