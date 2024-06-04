@@ -51,29 +51,34 @@ namespace Project.COREMVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateMovie(MovieRequestPageVM model,IFormFile formFileImage, IFormFile formFileVideo) 
         {
-            Guid uniqueName = Guid.NewGuid();
-            string extension = Path.GetExtension(formFileImage.FileName);
-            model.Movie.ImagePath = $"/images/{uniqueName}{extension}";
-            string path = $"{Directory.GetCurrentDirectory()}/wwwroot{model.Movie.ImagePath}";
-            FileStream stream = new FileStream(path, FileMode.Create);
-            formFileImage.CopyTo(stream);
-
-            Guid uniqueName2 = Guid.NewGuid();
-            string extension2 = Path.GetExtension(formFileVideo.FileName);
-            model.Movie.VideoPath = $"/videos/{uniqueName2}{extension2}";
-            string pathVideo = $"{Directory.GetCurrentDirectory()}/wwwroot{model.Movie.VideoPath}";
-            FileStream stream2 = new FileStream(pathVideo, FileMode.Create);
-            formFileVideo.CopyTo(stream2);
-
-           
-
-
+            string pathImg="", pathVid="";
+            if (formFileImage !=null)
+            {
+                Guid uniqueName = Guid.NewGuid();
+                string extension = Path.GetExtension(formFileImage.FileName);
+                model.Movie.ImagePath = $"/images/{uniqueName}{extension}";
+                string path = $"{Directory.GetCurrentDirectory()}/wwwroot{model.Movie.ImagePath}";
+                FileStream stream = new FileStream(path, FileMode.Create);
+                pathImg = path;
+                formFileImage.CopyTo(stream);
+            }
+            if (formFileVideo != null)
+            {
+                Guid uniqueName2 = Guid.NewGuid();
+                string extension2 = Path.GetExtension(formFileVideo.FileName);
+                model.Movie.VideoPath = $"/videos/{uniqueName2}{extension2}";
+                string pathVideo = $"{Directory.GetCurrentDirectory()}/wwwroot{model.Movie.VideoPath}";
+                FileStream stream2 = new FileStream(pathVideo, FileMode.Create);
+                pathVid = pathVideo;
+                formFileVideo.CopyTo(stream2);
+            }
+            
             Movie movie = new()
                 {
                     MovieName = model.Movie.MovieName,
                     Description = model.Movie.Description,
-                    ImagePath = path,
-                    VideoPath = pathVideo
+                    ImagePath = pathImg,
+                    VideoPath = pathVid
                 };
                 await _movieManager.AddAsync(_mapper.Map<MovieDTO>(movie));
 
@@ -100,22 +105,38 @@ namespace Project.COREMVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateMovie(Movie model, IFormFile formFileImage, IFormFile formFileVideo)
         {
-            
+            string orgImg, orgVid;
+            var movie = await _movieManager.FindAsync(model.ID);
+            orgImg = movie.ImagePath;
+            orgVid = movie.VideoPath;
+            if (formFileImage != null)
+            {
                 Guid uniqueName = Guid.NewGuid();
-            string extension = Path.GetExtension(formFileImage.FileName);
-            model.ImagePath = $"/images/{uniqueName}{extension}";
-            string path = $"{Directory.GetCurrentDirectory()}/wwwroot{model.ImagePath}";
-            FileStream stream = new FileStream(path, FileMode.Create);
-            formFileImage.CopyTo(stream);
-            
-            
+                string extension = Path.GetExtension(formFileImage.FileName);
+                model.ImagePath = $"/images/{uniqueName}{extension}";
+                string path = $"{Directory.GetCurrentDirectory()}/wwwroot{model.ImagePath}";
+                FileStream stream = new FileStream(path, FileMode.Create);
+                formFileImage.CopyTo(stream);
+            }
+            else
+            {
+                model.ImagePath = orgImg;
+            }
+
+
+            if (formFileVideo != null)
+            {
                 Guid uniqueName2 = Guid.NewGuid();
-            string extension2 = Path.GetExtension(formFileVideo.FileName);
-            model.VideoPath = $"/videos/{uniqueName2}{extension2}";
-            string pathVideo = $"{Directory.GetCurrentDirectory()}/wwwroot{model.VideoPath}";
-            FileStream stream2 = new FileStream(pathVideo, FileMode.Create);
-            formFileVideo.CopyTo(stream2);
-            
+                string extension2 = Path.GetExtension(formFileVideo.FileName);
+                model.VideoPath = $"/videos/{uniqueName2}{extension2}";
+                string pathVideo = $"{Directory.GetCurrentDirectory()}/wwwroot{model.VideoPath}";
+                FileStream stream2 = new FileStream(pathVideo, FileMode.Create);
+                formFileVideo.CopyTo(stream2);
+            }
+            else
+            {
+                model.VideoPath = orgVid;
+            }
 
             await _movieManager.UpdateAsync(_mapper.Map<MovieDTO>(model));
             return RedirectToAction("Index");
