@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -48,17 +49,22 @@ namespace Project.COREMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMovie(MovieRequestPageVM model, IFormFile formFileImage, IFormFile formFileVideo) 
+        public async Task<IActionResult> CreateMovie(MovieRequestPageVM model,IFormFile formFileImage, IFormFile formFileVideo) 
         {
+            Guid uniqueName = Guid.NewGuid();
             string extension = Path.GetExtension(formFileImage.FileName);
-            string path = $"{Directory.GetCurrentDirectory()}/wwwroot/images/{Guid.NewGuid()}{extension}";
+            model.Movie.ImagePath = $"/images/{uniqueName}{extension}";
+            string path = $"{Directory.GetCurrentDirectory()}/wwwroot{model.Movie.ImagePath}";
             FileStream stream = new FileStream(path, FileMode.Create);
             formFileImage.CopyTo(stream);
+            //string pathImage = $"{Directory.GetCurrentDirectory()}/wwwroot/images/{uniqueName}{extension}";
+            //FileStream stream = new FileStream(pathImage, FileMode.Create);
+            //formFileImage.CopyTo(stream);
 
             string extension1 = Path.GetExtension(formFileVideo.FileName);
-            string path1 = $"{Directory.GetCurrentDirectory()}/wwwroot/videos/{Guid.NewGuid()}{extension1}";
-            FileStream stream1 = new FileStream(path1, FileMode.Create);
-            formFileImage.CopyTo(stream1);
+            string pathVideo = $"{Directory.GetCurrentDirectory()}/wwwroot/videos/{Guid.NewGuid()}{extension1}";
+            FileStream stream1 = new FileStream(pathVideo, FileMode.Create);
+            formFileVideo.CopyTo(stream1);
 
 
 
@@ -67,7 +73,7 @@ namespace Project.COREMVC.Areas.Admin.Controllers
                     MovieName = model.Movie.MovieName,
                     Description = model.Movie.Description,
                     ImagePath = path,
-                    VideoPath = path1
+                    VideoPath = pathVideo
                 };
                 await _movieManager.AddAsync(_mapper.Map<MovieDTO>(movie));
 

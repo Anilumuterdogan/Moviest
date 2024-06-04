@@ -1,8 +1,10 @@
 ﻿@model MovieRequestPageVM
 
+
+
 <h3>Press for Get Movies <a asp-controller="Movie" asp-action="Index">Press</a></h3>
 <link href="/OuterTools/css/bootstrap.min.css" rel="stylesheet">
-<form asp-controller="Movie" asp-action="CreateMovie" method="post" class="form">
+<form asp-controller="Movie" asp-action="CreateMovie" method="post" class="form" enctype="multipart/form-data">
 
 
     <div class="mb-3">
@@ -26,7 +28,7 @@
   
 
 
-    <button class="btn btn-primary">
+    <button  class="btn btn-primary">
         Add Movie
     </button>
 

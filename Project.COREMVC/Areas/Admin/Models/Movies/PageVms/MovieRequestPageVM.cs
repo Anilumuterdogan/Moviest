@@ -7,6 +7,6 @@ namespace Project.COREMVC.Areas.Admin.Models.Movies.PageVms
     {
         public CreateMovieRequestModel Movie { get; set; }
 
-      
+
     }
 }
