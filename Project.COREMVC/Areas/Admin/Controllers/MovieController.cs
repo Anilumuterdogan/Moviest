@@ -48,12 +48,17 @@ namespace Project.COREMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMovie(MovieRequestPageVM model, IFormFile formFileImage) 
+        public async Task<IActionResult> CreateMovie(MovieRequestPageVM model, IFormFile formFileImage, IFormFile formFileVideo) 
         {
             string extension = Path.GetExtension(formFileImage.FileName);
             string path = $"{Directory.GetCurrentDirectory()}/wwwroot/images/{Guid.NewGuid()}{extension}";
             FileStream stream = new FileStream(path, FileMode.Create);
             formFileImage.CopyTo(stream);
+
+            string extension1 = Path.GetExtension(formFileVideo.FileName);
+            string path1 = $"{Directory.GetCurrentDirectory()}/wwwroot/videos/{Guid.NewGuid()}{extension1}";
+            FileStream stream1 = new FileStream(path1, FileMode.Create);
+            formFileImage.CopyTo(stream1);
 
 
 
@@ -62,7 +67,7 @@ namespace Project.COREMVC.Areas.Admin.Controllers
                     MovieName = model.Movie.MovieName,
                     Description = model.Movie.Description,
                     ImagePath = path,
-                    VideoPath = model.Movie.VideoPath
+                    VideoPath = path1
                 };
                 await _movieManager.AddAsync(_mapper.Map<MovieDTO>(movie));
 
