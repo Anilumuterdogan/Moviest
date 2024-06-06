@@ -51,6 +51,8 @@ namespace Project.BLL.Mapping
                 .ReverseMap();
             #endregion
 
+            
+         
             #region MovieCastDTOMapping
             CreateMap<MovieCast, MovieCastDTO>()
                 .ForMember(dest => dest.MovieID, act => act.MapFrom(src => src.MovieID))

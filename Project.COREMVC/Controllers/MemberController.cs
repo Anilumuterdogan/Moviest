@@ -27,13 +27,42 @@ namespace Project.COREMVC.Controllers
             _movieGenreManager = movieGenreManager;
         }
 
+        private List<MovieVM> MovieDtoToVM() 
+        {
+
+
+            List<MovieVM> liste=_movieManager.GetActives().Select(x => new MovieVM
+            {
+              VideoPath = x.VideoPath,
+              MovieName = x.MovieName,
+              ImagePath = x.ImagePath,  
+              ID = x.ID 
+            }).ToList();
+
+
+            return liste;
+        }
+        private List<MovieVM> GenreDtoToVm(int? id)
+        {
+          List<MovieVM> list=  _movieManager.GetActives().Where(x => x.MovieGenres.Any(y => y.GenreID == id)).Select(a=> new MovieVM
+          {
+              VideoPath = a.VideoPath,
+              MovieName = a.MovieName,
+              ImagePath = a.ImagePath,
+              ID = a.ID
+          }).ToList();
+
+
+            return list;
+        }
+
         public IActionResult Index(int? page, int? genreID)
         {
             MemberMovieVM memberMovie = new MemberMovieVM()
             {
-                Movies = genreID == null ? _movieManager.GetActives().ToPagedList(page ?? 1,9): _movieGenreManager.Where(x => x.GenreID == genreID).ToList().ToPagedList(page ?? 1, 9),
+                Movies = genreID == null ? MovieDtoToVM().ToPagedList(page ?? 1,9): GenreDtoToVm(genreID).ToPagedList(page ?? 1, 9),
 
-                Genres = _genreManager.GetActives()
+                //Genres = _genreManager.GetActives()
             };
             
             
