@@ -13,9 +13,11 @@ namespace Project.BLL.DTOClasses
         public string Description { get; set; }
         public string ImagePath { get; set; }
         public string VideoPath { get; set; }
+        
 
         //Relational Properties
         public virtual ICollection<MovieCastDTO> MovieCasts { get; set; }
         public virtual ICollection<MovieGenreDTO> MovieGenres { get; set; }
+        
     }
 }

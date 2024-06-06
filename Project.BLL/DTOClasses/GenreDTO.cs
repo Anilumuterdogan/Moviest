@@ -13,5 +13,6 @@ namespace Project.BLL.DTOClasses
         
         //Relational Properties
         public ICollection<MovieGenreDTO> MovieGenres { get; set; }
+        
     }
 }
