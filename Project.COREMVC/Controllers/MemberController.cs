@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Abstracts;
+using Project.COREMVC.Models.Members.Genres;
 using Project.COREMVC.Models.Members.MemberPageVM;
 using Project.COREMVC.Models.Members.Movies;
 using Project.ENTITIES.Models;
@@ -62,10 +63,14 @@ namespace Project.COREMVC.Controllers
             {
                 Movies = genreID == null ? MovieDtoToVM().ToPagedList(page ?? 1,9): GenreDtoToVm(genreID).ToPagedList(page ?? 1, 9),
 
-                //Genres = _genreManager.GetActives()
+                Genres =  _genreManager.GetActives().Select(x => new GenreVM
+                {
+                    GenreName = x.GenreName,
+                    ID = x.ID
+                } ).ToList(),
             };
-            
-            
+            if (genreID != null) TempData["genreID"] = genreID;
+
             return View(memberMovie);
         }
     }
