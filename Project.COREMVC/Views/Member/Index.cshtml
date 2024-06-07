@@ -1,7 +1,4 @@
-﻿
-
-
-@model MemberMovieVM
+﻿@model MemberMovieVM
 
 
 <h5>@TempData["message"]</h5>
@@ -11,7 +8,7 @@
 
         <section class="panel">
             <header class="panel-heading">
-                Categories
+                Genres
             </header>
             <div class="panel-body">
                 <ul class="nav prod-cat">
@@ -66,7 +63,7 @@
                 <div class="col-md-4">
                     <section class="panel">
                         <div class="pro-img-box" width="60px" height="60px">
-                                <img src="@item.ImagePath" alt=""  />
+                            <img src="@item.ImagePath" alt="" />
                             <a asp-action="AddToCart" asp-route-id="@item.ID" class="adtocart">
                                 <i class="icon-shopping-cart"></i>
                             </a>
@@ -78,7 +75,7 @@
                                     @item.MovieName
                                 </a>
                             </h4>
-                            
+
                         </div>
                     </section>
                 </div>
