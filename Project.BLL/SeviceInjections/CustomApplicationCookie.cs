@@ -17,7 +17,7 @@ namespace Project.BLL.SeviceInjections
                  x.Cookie.HttpOnly = true;
                  x.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
                  x.Cookie.Name = "CyberSelf";
-                 x.ExpireTimeSpan = TimeSpan.FromMinutes(99999999);
+                 x.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                  x.Cookie.SameSite = SameSiteMode.Strict;
                  x.LoginPath = new PathString("/Home/SignIn");
                  x.AccessDeniedPath = new PathString("/Home/AccessDenied");
