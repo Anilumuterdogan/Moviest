@@ -1,4 +1,7 @@
-﻿@model MemberMovieVM
+﻿
+
+
+@model MemberMovieVM
 
 
 <h5>@TempData["message"]</h5>
@@ -13,11 +16,11 @@
             <div class="panel-body">
                 <ul class="nav prod-cat">
 
-                    @foreach (G item in Model.Categories)
+                    @foreach (GenreVM item in Model.Genres)
                     {
                         <li style="padding-top:30px">
 
-                            <a asp-controller="Shopping" asp-action="Index" asp-route-categoryID="@item.ID" class="btn btn-primary">@item.CategoryName</a>
+                            <a asp-controller="Member" asp-action="Index" asp-route-categoryID="@item.ID" class="btn btn-primary">@item.GenreName</a>
 
 
                         </li>
@@ -36,14 +39,14 @@
                     <ul class="pagination pagination-sm pro-page-list">
 
 
-                        @if (TempData["catID"] != null)
+                        @if (TempData["genreID"] != null)
                         {
-                            <li> @Html.PagedListPager(Model.Products, page => Url.Action("Index", new { page, categoryID = TempData["catID"] }))     </li>
+                            <li> @Html.PagedListPager(Model.Movies, page => Url.Action("Index", new { page, genreID = TempData["genreID"] }))     </li>
                         }
                         else
                         {
                             <li>
-                                @Html.PagedListPager(Model.Products, page => Url.Action("Index", new { page }))
+                                @Html.PagedListPager(Model.Movies, page => Url.Action("Index", new { page }))
                             </li>
                         }
 
@@ -57,7 +60,7 @@
 
         <div class="row product-list">
 
-            @foreach (Product item in Model.Products)
+            @foreach (MovieVM item in Model.Movies)
             {
 
                 <div class="col-md-4">
@@ -71,11 +74,11 @@
 
                         <div class="panel-body text-center">
                             <h4>
-                                <a href="#" class="pro-title" title="@item.Category.CategoryName">
-                                    @item.ProductName
+                                <a href="#" class="pro-title" title="@item.MovieName">
+                                    @item.MovieName
                                 </a>
                             </h4>
-                            <p class="price">$@item.UnitPrice</p>
+                            
                         </div>
                     </section>
                 </div>
