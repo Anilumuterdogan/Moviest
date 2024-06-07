@@ -63,15 +63,7 @@
                 <div class="col-md-4">
                     <section class="panel">
                         <div class="pro-img-box">
-                            @if (item.ImagePath.Contains("nightlife"))
-                            {
-                                <img src="/images/TheWarrior.jpg" />
-                            }
-                            else
-                            {
                                 <img src="@item.ImagePath" alt="" />
-                            }
-
                             <a asp-action="AddToCart" asp-route-id="@item.ID" class="adtocart">
                                 <i class="icon-shopping-cart"></i>
                             </a>
