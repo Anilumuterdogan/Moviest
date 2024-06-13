@@ -69,7 +69,7 @@ namespace Project.COREMVC.Controllers
                     ID = x.ID
                 } ).ToList(),
             };
-            if (genreID != null) TempData["genreID"] = genreID;
+            if (genreID != null) TempData["genreID"] = genreID;//page degistirdigimizde genre'nin bir sonraki sayfada unutulmaması icin gecici bir depolama alanında tutuyoruz.GenreID ilkel bir tip oldugu icin tempdata da saklıyoruz .Viewdata kullanmamamızın sebebi bir sonra ki sayfada tamamen farklı bir request olacagı icin view dan çıkar o yuzden kullanmayız.
 
             return View(memberMovie);
         }
