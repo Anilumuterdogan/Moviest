@@ -106,5 +106,7 @@ namespace Project.COREMVC.Controllers
             MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie");
             return View(m);
         }
+
+        
     }
 }
