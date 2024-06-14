@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Project.BLL.SeviceInjections;
 using Project.DAL.ContextClasses;
 using Project.ENTITIES.Models;
@@ -9,8 +9,14 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
-
-
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(x =>
+{
+    x.IdleTimeout = TimeSpan.FromMinutes(60); 
+    x.Cookie.HttpOnly = true; 
+    x.Cookie.IsEssential = true;
+});
+   
 builder.Services.ConfigureApplicationCookie();
 builder.Services.AddIdentityServices();
 
@@ -31,6 +37,8 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthentication();
 

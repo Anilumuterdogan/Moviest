@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Abstracts;
+using Project.COREMVC.Models.Members.Movies;
+
+//using Project.COREMVC.Areas.Admin.Models.Movies.PureVms;
 using Project.COREMVC.Models.Members.Genres;
 using Project.COREMVC.Models.Members.MemberPageVM;
 using Project.COREMVC.Models.Members.Movies;
@@ -30,16 +33,16 @@ namespace Project.COREMVC.Controllers
             _movieGenreManager = movieGenreManager;
         }
 
-        private List<MovieVM> MovieDtoToVM() 
+        private List<MovieVM> MovieDtoToVM()
         {
 
 
-            List<MovieVM> liste=_movieManager.GetActives().Select(x => new MovieVM
+            List<MovieVM> liste = _movieManager.GetActives().Select(x => new MovieVM
             {
-              VideoPath = x.VideoPath,
-              MovieName = x.MovieName,
-              ImagePath = x.ImagePath,  
-              ID = x.ID 
+                VideoPath = x.VideoPath,
+                MovieName = x.MovieName,
+                ImagePath = x.ImagePath,
+                ID = x.ID
             }).ToList();
 
 
@@ -47,13 +50,13 @@ namespace Project.COREMVC.Controllers
         }
         private List<MovieVM> GenreDtoToVm(int? id)
         {
-          List<MovieVM> list=  _movieManager.GetActives().Where(x => x.MovieGenres.Any(y => y.GenreID == id)).Select(a=> new MovieVM
-          {
-              VideoPath = a.VideoPath,
-              MovieName = a.MovieName,
-              ImagePath = a.ImagePath,
-              ID = a.ID
-          }).ToList();
+            List<MovieVM> list = _movieManager.GetActives().Where(x => x.MovieGenres.Any(y => y.GenreID == id)).Select(a => new MovieVM
+            {
+                VideoPath = a.VideoPath,
+                MovieName = a.MovieName,
+                ImagePath = a.ImagePath,
+                ID = a.ID
+            }).ToList();
 
 
             return list;
@@ -63,20 +66,20 @@ namespace Project.COREMVC.Controllers
         {
             MemberMovieVM memberMovie = new MemberMovieVM()
             {
-                Movies = genreID == null ? MovieDtoToVM().ToPagedList(page ?? 1,9): GenreDtoToVm(genreID).ToPagedList(page ?? 1, 9),
+                Movies = genreID == null ? MovieDtoToVM().ToPagedList(page ?? 1, 9) : GenreDtoToVm(genreID).ToPagedList(page ?? 1, 9),
 
-                Genres =  _genreManager.GetActives().Select(x => new GenreVM
+                Genres = _genreManager.GetActives().Select(x => new GenreVM
                 {
                     GenreName = x.GenreName,
                     ID = x.ID
-                } ).ToList(),
+                }).ToList(),
             };
             if (genreID != null) TempData["genreID"] = genreID;//page degistirdigimizde genre'nin bir sonraki sayfada unutulmaması icin gecici bir depolama alanında tutuyoruz.GenreID ilkel bir tip oldugu icin tempdata da saklıyoruz .Viewdata kullanmamamızın sebebi bir sonra ki sayfada tamamen farklı bir request olacagı icin view dan çıkar o yuzden kullanmayız.
 
             return View(memberMovie);
         }
 
-        public async Task<IActionResult> AddToMovie(int id) 
+        public async Task<IActionResult> AddToMovie(int id)
         {
             MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie") == null ? new MovieList() : HttpContext.Session.GetObject<MovieList>("dmovie");
 
@@ -84,27 +87,70 @@ namespace Project.COREMVC.Controllers
             MovieItem mi = new()
             {
                 ID = movieAdd.ID,
-                MovieName= movieAdd.MovieName,
-                ImagePath= movieAdd.ImagePath
-               
-            };
-            m.AddToMovie(mi);
+                MovieName = movieAdd.MovieName,
+                ImagePath = movieAdd.ImagePath
 
-            HttpContext.Session.SetObject("dmovie", m);
+            };
+            // Watchlist'i cookie'den al
+            List<MovieItem> watchlist = Request.GetCookie<List<MovieItem>>("dmovie") ?? new List<MovieItem>();
+
+            // Eğer öğe zaten varsa, eklemeyin
+            if (!watchlist.Exists(m => m.ID == id))
+            {
+                watchlist.Add(mi);
+            }
+
+            // Watchlist'i cookie'ye geri koy
+            Response.SetCookie("dmovie", watchlist, 60 * 24 * 7);
+            m.AddToMovie(mi);
+            SetMovieList(m);
 
             TempData["message"] = $"{mi.MovieName} added to movie watch list";//CHECK
+
             return RedirectToAction("Index");
         }
 
-        public IActionResult MovieListPage() 
+        private void SetMovieList(MovieList m)
         {
-            if (HttpContext.Session.GetObject<MovieList>("dmovie")==null) 
+            HttpContext.Session.SetObject("dmovie", m);
+            
+        }
+
+        public IActionResult MovieListPage()
+        {
+            if (HttpContext.Session.GetObject<MovieList>("dmovie") == null)
             {
                 TempData["message"] = "watclist is currently empty ";
                 return RedirectToAction("Index");
             }
             MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie");
+            List<MovieItem> watchlist = Request.GetCookie<List<MovieItem>>("dmovie") ?? new List<MovieItem>();
+
             return View(m);
+            
+        }
+
+        public IActionResult DeleteFromMovieList(int id)
+        {
+            if (GetMovieListFromSession("dmovie") != null)
+            {
+                MovieList m = GetMovieListFromSession("dmovie");
+                m.RemoveMovieList(id);
+                SetMovieList(m);
+                if (m.GetMovieItems.Count == 0)
+                {
+                    HttpContext.Session.Remove("dmovie");
+                    TempData["message"] = "İzleme listenizdeki bütün filmler çıkarılmıştır.";
+                    return RedirectToAction("Index");
+                }
+                
+            }
+            return RedirectToAction("MovieListPage");
+        }
+
+        MovieList GetMovieListFromSession(string key)
+        {
+            return HttpContext.Session.GetObject<MovieList>(key);
         }
     }
 }
