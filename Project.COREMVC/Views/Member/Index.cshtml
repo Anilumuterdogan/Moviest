@@ -1,7 +1,7 @@
 ﻿@model MemberMovieVM
 
 
-<h5>@TempData["message"]</h5>
+<h5><span class="text-danger">@TempData["message"]</span></h5>
 
 <div class="row">
     <div class="col-md-3">
@@ -64,7 +64,7 @@
                     <section class="panel">
                         <div class="pro-img-box" width="60px" height="60px">
                             <img src="@item.ImagePath" alt="" />
-                            <a asp-action="AddToCart" asp-route-id="@item.ID" class="adtocart">
+                            <a asp-action="AddToMovie" asp-route-id="@item.ID" class="adtocart">
                                 <i class="icon-shopping-cart"></i>
                             </a>
                         </div>
@@ -89,6 +89,6 @@
 
 @section Sepet {
     <li>
-        <a asp-controller="Shopping" asp-action="CartPage"> <i class="icon-shopping-cart"></i> Cart  </a>
+        <a asp-controller="Member" asp-action="MovieListPage"> <i class="icon-shopping-cart"></i> MovieList  </a>
     </li>
 }

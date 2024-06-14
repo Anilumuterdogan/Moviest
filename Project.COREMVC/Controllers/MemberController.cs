@@ -6,6 +6,8 @@ using Project.BLL.ManagerServices.Abstracts;
 using Project.COREMVC.Models.Members.Genres;
 using Project.COREMVC.Models.Members.MemberPageVM;
 using Project.COREMVC.Models.Members.Movies;
+using Project.COREMVC.Models.Members.WatchlistTools;
+using Project.COREMVC.Models.SessionService;
 using Project.ENTITIES.Models;
 using System.Collections.Generic;
 using X.PagedList;
@@ -72,6 +74,37 @@ namespace Project.COREMVC.Controllers
             if (genreID != null) TempData["genreID"] = genreID;//page degistirdigimizde genre'nin bir sonraki sayfada unutulmaması icin gecici bir depolama alanında tutuyoruz.GenreID ilkel bir tip oldugu icin tempdata da saklıyoruz .Viewdata kullanmamamızın sebebi bir sonra ki sayfada tamamen farklı bir request olacagı icin view dan çıkar o yuzden kullanmayız.
 
             return View(memberMovie);
+        }
+
+        public async Task<IActionResult> AddToMovie(int id) 
+        {
+            MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie") == null ? new MovieList() : HttpContext.Session.GetObject<MovieList>("dmovie");
+
+            Movie movieAdd = _mapper.Map<Movie>(await _movieManager.FindAsync(id));
+            MovieItem mi = new()
+            {
+                ID = movieAdd.ID,
+                MovieName= movieAdd.MovieName,
+                ImagePath= movieAdd.ImagePath
+               
+            };
+            m.AddToMovie(mi);
+
+            HttpContext.Session.SetObject("dmovie", m);
+
+            TempData["message"] = $"{mi.MovieName} added to movie watch list";//CHECK
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult MovieListPage() 
+        {
+            if (HttpContext.Session.GetObject<MovieList>("dmovie")==null) 
+            {
+                TempData["message"] = "watclist is currently empty ";
+                return RedirectToAction("Index");
+            }
+            MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie");
+            return View(m);
         }
     }
 }

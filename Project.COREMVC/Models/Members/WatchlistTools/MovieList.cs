@@ -1,7 +1,11 @@
-﻿namespace Project.COREMVC.Models.Members.WatchlistTools
+﻿using Newtonsoft.Json;
+
+namespace Project.COREMVC.Models.Members.WatchlistTools
 {
+    [Serializable]
     public class MovieList
     {
+        [JsonProperty("_myMovie")]
         Dictionary<int, MovieItem> _myMovie;
 
         public MovieList() 
@@ -9,9 +13,22 @@
             _myMovie = new Dictionary<int, MovieItem>();
         }
 
-        public List<MovieItem> GetMovieItems() 
+        [JsonProperty("GetMovieItems")]
+        public List<MovieItem> GetMovieItems
         {
-            return _myMovie.Values.ToList();
+            get
+            {
+                return _myMovie.Values.ToList();
+            }
+        }
+
+        public void AddToMovie(MovieItem mi)
+        {
+            if (!_myMovie.ContainsKey(mi.ID))
+            {
+                _myMovie.Add(mi.ID, mi);
+            }
+            
         }
 
         public void RemoveMovieList(int id) 
@@ -19,9 +36,15 @@
             _myMovie.Remove(id);
         }
 
-        public decimal MovieTotal()
+        [JsonProperty("MovieTotal")]
+        public decimal MovieTotal
         {
-            return _myMovie.Count;
+            get
+            {
+                return _myMovie.Count;
+            }
+
         }
+        
     }
 }
