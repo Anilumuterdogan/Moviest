@@ -177,7 +177,7 @@ namespace Project.COREMVC.Controllers
                     }
                     else if (roles.Contains("Member"))
                     {
-                        return RedirectToAction("Member"); 
+                        return RedirectToAction("Index", "Member"); 
                     }
                     return RedirectToAction("Register"); 
                 }

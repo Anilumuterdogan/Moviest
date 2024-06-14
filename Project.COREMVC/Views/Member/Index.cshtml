@@ -12,9 +12,12 @@
             </header>
             <div class="panel-body">
                 <ul class="nav prod-cat">
-
+                    <li style="padding-top:30px">
+                        <a asp-controller="Member" asp-action="Index" class="btn btn-primary">All Genres</a>
+                    </li>
                     @foreach (GenreVM item in Model.Genres)
                     {
+                        
                         <li style="padding-top:30px">
 
                             <a asp-controller="Member" asp-action="Index" asp-route-genreID="@item.ID" class="btn btn-primary">@item.GenreName</a>
@@ -87,8 +90,11 @@
     </div>
 </div>
 
-@section Sepet {
+@if (User.Identity.IsAuthenticated)
+{
+    @section Sepet {
     <li>
         <a asp-controller="Member" asp-action="MovieListPage"> <i class="icon-shopping-cart"></i> MovieList  </a>
     </li>
+    }
 }

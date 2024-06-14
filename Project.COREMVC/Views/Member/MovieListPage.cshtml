@@ -3,8 +3,8 @@
 
 
 <div class="jumbotron">
-   ListMovie => @Model.MovieTotal </a>
-</div>> class=</div>
+   Movie Count => @Model.MovieTotal </a>
+</div>
 
 <div class="row product-list">
 
@@ -15,8 +15,18 @@
             <section class="panel">
                 <div class="pro-img-box">
                     
+                        <img src="@item.ImagePath" alt="" />
+                    <div class="panel-body text-center">
+                        <h4>
+                            <a href="#" class="pro-title" title="@item.MovieName">
+                                @item.MovieName
+                            </a>
+                        </h4>
 
-                    <a asp-action="DeleteFromCart" asp-route-id="@item.ID" class="adtocart">
+                    </div>
+                   
+
+                    <a asp-action="DeleteFromMovieList" asp-route-id="@item.ID" class="adtocart">
                         <i class="glyphicon glyphicon-remove"></i>
                     </a>
 
@@ -24,13 +34,7 @@
                    
                 </div>
 
-                <div class="panel-body text-center">
-                    
-                   
-                    <a asp-action="RemoveMovieList" asp-route-id="@item.ID" class="adtocart">
-                        <i class="glyphicon glyphicon-minus"></i>
-                    </a>
-                </div>
+                
             </section>
         </div>
     }
