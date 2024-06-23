@@ -22,24 +22,7 @@ namespace Project.COREMVC.Models.SessionService
             return null;
         }
 
-        public static void SetCookie(this HttpResponse response, string key, object value, int? expireTime)
-        {
-            CookieOptions option = new CookieOptions();
-
-            if (expireTime.HasValue)
-                option.Expires = DateTime.Now.AddMinutes(expireTime.Value);
-            else
-                option.Expires = DateTime.Now.AddMinutes(30);
-
-            var jsonValue = JsonConvert.SerializeObject(value);
-            response.Cookies.Append(key, jsonValue, option);
-        }
-
-        public static T GetCookie<T>(this HttpRequest request, string key)
-        {
-            var cookie = request.Cookies[key];
-            return cookie == null ? default(T) : JsonConvert.DeserializeObject<T>(cookie);
-        }
+       
 
     }
 }

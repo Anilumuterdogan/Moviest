@@ -24,6 +24,7 @@
 
 
                         </li>
+
                     }
                 </ul>
             </div>
@@ -60,9 +61,9 @@
 
         <div class="row product-list">
 
-            @foreach (MovieVM item in Model.Movies)
+            @* @foreach (MovieVM item in Model.Movies)
             {
-
+                
                 <div class="col-md-4">
                     <section class="panel">
                         <div class="pro-img-box" width="60px" height="60px">
@@ -74,7 +75,7 @@
 
                         <div class="panel-body text-center">
                             <h4>
-                                <a href="#" class="pro-title" title="@item.MovieName">
+                                <a  href="#" class="pro-title" title="@item.MovieName">
                                     @item.MovieName
                                 </a>
                             </h4>
@@ -82,9 +83,31 @@
                         </div>
                     </section>
                 </div>
+            } *@
+            @foreach (MovieVM item in Model.Movies)
+            {
+                <div class="col-md-4">
+                    <section class="panel">
+                        <div class="pro-img-box" width="60px" height="60px">
+                            <a href="@Url.Action("MovieDetails", "Member", new { id = item.ID })">
+                                <img src="@item.ImagePath" alt="@item.MovieName" />
+                            </a>
+                            <a asp-action="AddToMovie" asp-route-id="@item.ID" class="adtocart">
+                                <i class="icon-shopping-cart"></i>
+                            </a>
+                        </div>
+
+                        <div class="panel-body text-center">
+                            <h4>
+                                <a href="@Url.Action("MovieDetails", "Member", new { id = item.ID })" class="pro-title" title="@item.MovieName">
+                                    @item.MovieName
+                                </a>
+                            </h4>
+                        </div>
+                    </section>
+                </div>
             }
-
-
+          
 
         </div>
     </div>

@@ -1,0 +1,37 @@
+﻿@model MovieVM
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Model.ImagePath" alt="@Model.MovieName" class="img-fluid" />
+        </div>
+        <div class="col-md-8">
+            <h1>@Model.MovieName</h1>
+            <p>@Model.Description</p>
+
+            <h3>Details</h3>
+           
+        </div>
+    </div>
+   
+
+
+<style>
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .comment {
+        border-bottom: 1px solid #ccc;
+        padding: 10px 0;
+    }
+
+        .comment strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+</style>
+   

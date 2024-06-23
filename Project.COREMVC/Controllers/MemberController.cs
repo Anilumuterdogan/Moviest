@@ -9,6 +9,7 @@ using Project.COREMVC.Models.SessionService;
 using Project.ENTITIES.Models;
 using X.PagedList;
 using MovieList = Project.COREMVC.Models.Members.WatchlistTools.MovieList;
+using Project.BLL.DTOClasses;
 
 namespace Project.COREMVC.Controllers
 {
@@ -18,20 +19,18 @@ namespace Project.COREMVC.Controllers
         readonly IMovieManager _movieManager;
         readonly IMovieGenreManager _movieGenreManager;
         readonly IMapper _mapper;
+        
 
         public MemberController(IGenreManager genreManager, IMovieManager movieManager, IMapper mapper, IMovieGenreManager movieGenreManager)
         {
             _genreManager = genreManager;
             _movieManager = movieManager;
-
             _mapper = mapper;
-            _movieGenreManager = movieGenreManager;
+            _movieGenreManager = movieGenreManager;          
         }
 
         private List<MovieVM> MovieDtoToVM()
         {
-
-
             List<MovieVM> liste = _movieManager.GetActives().Select(x => new MovieVM
             {
                 VideoPath = x.VideoPath,
@@ -39,7 +38,6 @@ namespace Project.COREMVC.Controllers
                 ImagePath = x.ImagePath,
                 ID = x.ID
             }).ToList();
-
 
             return liste;
         }
@@ -52,7 +50,6 @@ namespace Project.COREMVC.Controllers
                 ImagePath = a.ImagePath,
                 ID = a.ID
             }).ToList();
-
 
             return list;
         }
@@ -101,8 +98,7 @@ namespace Project.COREMVC.Controllers
 
         private void SetMovieList(MovieList m)
         {
-            HttpContext.Session.SetObject("dmovie", m);
-            
+            HttpContext.Session.SetObject("dmovie", m);           
         }
 
         public IActionResult MovieListPage()
@@ -113,8 +109,7 @@ namespace Project.COREMVC.Controllers
                 return RedirectToAction("Index");
             }
             MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie");
-            List<MovieItem> watchlist = Request.GetCookie<List<MovieItem>>("dmovie") ?? new List<MovieItem>();
-
+            
             return View(m);
             
         }
@@ -142,6 +137,29 @@ namespace Project.COREMVC.Controllers
             return HttpContext.Session.GetObject<MovieList>(key);
         }
 
-        
+        public MovieVM GetMovieById(int id)
+        {
+            var movie = _movieManager.Where(m => m.ID == id).Select(m => new MovieVM
+                {
+                    ID = m.ID,
+                    MovieName = m.MovieName,
+                    Description = m.Description,
+                    ImagePath = m.ImagePath
+                    
+                })
+                .FirstOrDefault();
+
+            return movie;
+        }
+        public IActionResult MovieDetails(int id)
+        {
+            var movie = GetMovieById(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return View(movie);
+        }
     }
 }
