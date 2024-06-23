@@ -1,19 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Abstracts;
 using Project.COREMVC.Models.Members.Movies;
-
-//using Project.COREMVC.Areas.Admin.Models.Movies.PureVms;
+using Project.COREMVC.Models.Members.WatchlistTools;
 using Project.COREMVC.Models.Members.Genres;
 using Project.COREMVC.Models.Members.MemberPageVM;
-using Project.COREMVC.Models.Members.Movies;
-using Project.COREMVC.Models.Members.WatchlistTools;
 using Project.COREMVC.Models.SessionService;
 using Project.ENTITIES.Models;
-using System.Collections.Generic;
 using X.PagedList;
+using MovieList = Project.COREMVC.Models.Members.WatchlistTools.MovieList;
 
 namespace Project.COREMVC.Controllers
 {
@@ -81,6 +76,11 @@ namespace Project.COREMVC.Controllers
 
         public async Task<IActionResult> AddToMovie(int id)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                TempData["message"] = "You need to be logged in to add a movie to your watch list.";
+                return RedirectToAction("Index"); 
+            }
             MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie") == null ? new MovieList() : HttpContext.Session.GetObject<MovieList>("dmovie");
 
             Movie movieAdd = _mapper.Map<Movie>(await _movieManager.FindAsync(id));
@@ -89,23 +89,12 @@ namespace Project.COREMVC.Controllers
                 ID = movieAdd.ID,
                 MovieName = movieAdd.MovieName,
                 ImagePath = movieAdd.ImagePath
-
             };
-            // Watchlist'i cookie'den al
-            List<MovieItem> watchlist = Request.GetCookie<List<MovieItem>>("dmovie") ?? new List<MovieItem>();
-
-            // Eğer öğe zaten varsa, eklemeyin
-            if (!watchlist.Exists(m => m.ID == id))
-            {
-                watchlist.Add(mi);
-            }
-
-            // Watchlist'i cookie'ye geri koy
-            Response.SetCookie("dmovie", watchlist, 60 * 24 * 7);
+                    
             m.AddToMovie(mi);
             SetMovieList(m);
 
-            TempData["message"] = $"{mi.MovieName} added to movie watch list";//CHECK
+            TempData["message"] = $"{mi.MovieName} added to movie watch list";
 
             return RedirectToAction("Index");
         }
