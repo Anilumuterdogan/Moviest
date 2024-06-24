@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Images\" />
+    <Folder Include="wwwroot\CastImages\" />
     <Folder Include="wwwroot\OuterTools\assets\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="wwwroot\Videos\" />
   </ItemGroup>

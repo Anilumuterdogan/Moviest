@@ -10,6 +10,9 @@ using Project.ENTITIES.Models;
 using X.PagedList;
 using MovieList = Project.COREMVC.Models.Members.WatchlistTools.MovieList;
 using Project.BLL.DTOClasses;
+using Project.BLL.ManagerServices.Concretes;
+using Project.COREMVC.Models.Members.MovieDetailsVM;
+using Project.COREMVC.Models.Members.Casts;
 
 namespace Project.COREMVC.Controllers
 {
@@ -18,15 +21,19 @@ namespace Project.COREMVC.Controllers
         readonly IGenreManager _genreManager;
         readonly IMovieManager _movieManager;
         readonly IMovieGenreManager _movieGenreManager;
+        readonly IMovieCastManager _movieCastManager;
+        readonly ICastManager _castManager;
         readonly IMapper _mapper;
-        
 
-        public MemberController(IGenreManager genreManager, IMovieManager movieManager, IMapper mapper, IMovieGenreManager movieGenreManager)
+
+        public MemberController(IGenreManager genreManager, IMovieManager movieManager, IMapper mapper, IMovieGenreManager movieGenreManager, ICastManager castManager, IMovieCastManager movieCastManager)
         {
             _genreManager = genreManager;
             _movieManager = movieManager;
             _mapper = mapper;
-            _movieGenreManager = movieGenreManager;          
+            _movieGenreManager = movieGenreManager;
+            _castManager = castManager;
+            _movieCastManager = movieCastManager;
         }
 
         private List<MovieVM> MovieDtoToVM()
@@ -137,19 +144,47 @@ namespace Project.COREMVC.Controllers
             return HttpContext.Session.GetObject<MovieList>(key);
         }
 
-        public MovieVM GetMovieById(int id)
+        //public MovieVM GetMovieById(int id)
+        //{
+        //    var movie = _movieManager.Where(m => m.ID == id).Select(m => new MovieVM
+        //        {
+        //            ID = m.ID,
+        //            MovieName = m.MovieName,
+        //            Description = m.Description,
+        //            ImagePath = m.ImagePath
+
+        //        }).FirstOrDefault();
+
+        //    return movie;
+        //}
+
+        public MovieDetailsVM GetMovieById(int id)
         {
             var movie = _movieManager.Where(m => m.ID == id).Select(m => new MovieVM
-                {
-                    ID = m.ID,
-                    MovieName = m.MovieName,
-                    Description = m.Description,
-                    ImagePath = m.ImagePath
-                    
-                })
-                .FirstOrDefault();
+            {
+                ID = m.ID,
+                MovieName = m.MovieName,
+                Description = m.Description,
+                ImagePath = m.ImagePath,
+                VideoPath = m.VideoPath
+                
+                
+            }).FirstOrDefault();
 
-            return movie;
+            List<CastVM> casts = _movieCastManager.Where(c => c.MovieID == id).Select(c => new CastVM
+            {
+                ID = c.ID,
+               FirstName  = c.Cast.FirstName,
+               LastName = c.Cast.LastName,
+               ImagePath = c.Cast.ImagePath
+
+            }).ToList();
+            return new MovieDetailsVM
+            {
+                Movie = movie,
+                Casts = casts,
+            };
+
         }
         public IActionResult MovieDetails(int id)
         {

@@ -36,15 +36,26 @@ namespace Project.COREMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCast(CastRequestPageVM model)
+        public async Task<IActionResult> CreateCast(CastRequestPageVM model, IFormFile formFileImage)
         {
+            string pathImg = "";
+            if (formFileImage != null)
+            {
+                Guid uniqueName = Guid.NewGuid();
+                string extension = Path.GetExtension(formFileImage.FileName);
+                model.Cast.ImagePath = $"/castimages/{uniqueName}{extension}";
+                string path = $"{Directory.GetCurrentDirectory()}/wwwroot{model.Cast.ImagePath}";
+                FileStream stream = new FileStream(path, FileMode.Create);
+                pathImg = path;
+                formFileImage.CopyTo(stream);
+            }
             Cast cast = new()
             {
                 FirstName = model.Cast.FirstName,
                 LastName = model.Cast.LastName,
                 Description = model.Cast.Description,
-                ImagePath = model.Cast.ImagePath,
-                VideoPath = model.Cast.VideoPath
+                ImagePath = pathImg
+
             };
             await _castManager.AddAsync(_mapper.Map<CastDTO>(cast));
             return RedirectToAction("Index");
@@ -68,8 +79,24 @@ namespace Project.COREMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateCast(Cast model)
+        public async Task<IActionResult> UpdateCast(Cast model, IFormFile formFileImage)
         {
+            string orgImg, orgVid;
+            var movie = await _castManager.FindAsync(model.ID);
+            orgImg = movie.ImagePath;
+            if (formFileImage != null)
+            {
+                Guid uniqueName = Guid.NewGuid();
+                string extension = Path.GetExtension(formFileImage.FileName);
+                model.ImagePath = $"/castimages/{uniqueName}{extension}";
+                string path = $"{Directory.GetCurrentDirectory()}/wwwroot{model.ImagePath}";
+                FileStream stream = new FileStream(path, FileMode.Create);               
+                formFileImage.CopyTo(stream);
+            }
+            else
+            {
+                model.ImagePath = orgImg;
+            }
             await _castManager.UpdateAsync(_mapper.Map<CastDTO>(model));
             return RedirectToAction("Index");
         }

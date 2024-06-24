@@ -2,7 +2,7 @@
 
 
 <link href="/OuterTools/css/bootstrap.min.css" rel="stylesheet">
-<form asp-action="UpdateCast" asp-controller="Cast" method="post" class="p-3 w-75 m-auto">
+<form asp-action="UpdateCast" asp-controller="Cast" method="post" class="p-3 w-75 m-auto" enctype="multipart/form-data">
 
     <input type="hidden" asp-for="ID" />
     <div class="mb-3">
@@ -18,13 +18,10 @@
         <input asp-for="Description" class="form-control" />
     </div>
     <div class="mb-3">
-        <label>Cast ImagePath giriniz</label>
-        <input asp-for="ImagePath" class="form-control" />
+        <label for="exampleFormControlInput1" class="form-label">Select Image Folder</label>
+        <input type="file" name="formFileImage" class="form-control">
     </div>
-    <div class="mb-3">
-        <label>Cast VideoPath giriniz</label>
-        <input asp-for="VideoPath" class="form-control" />
-    </div>
+    
 
     <div class="mb-3">
         <button class="btn btn-primary">Cast update</button>

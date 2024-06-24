@@ -1,4 +1,4 @@
-﻿namespace Project.COREMVC.Areas.Admin.Models.Casts.PureVms
+﻿namespace Project.COREMVC.Models.Members.Casts
 {
     public class CastVM
     {
@@ -6,7 +6,6 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string? Description { get; set; }
-        public string? ImagePath { get; set; }
-       
+        public string? ImagePath { get; set; }    
     }
 }
