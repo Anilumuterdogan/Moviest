@@ -82,6 +82,15 @@ namespace Project.BLL.Mapping
                 .ForMember(dest => dest.Genre, act => act.MapFrom(src => src.Genre))
                 .ReverseMap();
             #endregion
+
+            #region MovieListDTOMapping
+            CreateMap<MovieList, MovieListDTO>()
+                .ForMember(dest => dest.MovieID, act => act.MapFrom(src => src.MovieID))
+                .ForMember(dest => dest.AppUserID, act => act.MapFrom(src => src.AppUserID))
+                .ForMember(dest => dest.Movie, act => act.MapFrom(src => src.Movie))
+                .ForMember(dest => dest.AppUser, act => act.MapFrom(src => src.AppUser))
+                .ReverseMap();
+            #endregion
         }
     }
 }

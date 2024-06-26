@@ -22,7 +22,8 @@ namespace Project.BLL.SeviceInjections
             services.AddScoped<IMovieCastManager, MovieCastManager>();
             services.AddScoped<IMovieGenreManager, MovieGenreManager>();
             services.AddScoped<IMovieManager, MovieManager>();
-            
+            services.AddScoped<IMovieListManager, MovieListManager>();
+
             return services;
         }
     }

@@ -30,6 +30,7 @@ namespace Project.DAL.ContextClasses
             builder.ApplyConfiguration(new MovieConfiguration());
             builder.ApplyConfiguration(new MovieCastConfiguration());
             builder.ApplyConfiguration(new MovieGenreConfiguration());
+            builder.ApplyConfiguration(new MovieListConfiguration());
             UserRoleDataSeedExtension.SeedUsers(builder);
             GenreDataSeedExtension.SeedGenres(builder);
             MovieDataSeedExtension.SeedMovies(builder);
@@ -44,6 +45,8 @@ namespace Project.DAL.ContextClasses
         public DbSet<Movie> Movies { get; set; }
         public DbSet<MovieCast> MovieCasts { get; set; }
         public DbSet<MovieGenre> MovieGenres { get; set; }
+        public DbSet<MovieList> MovieLists { get; set; }
+        
 
     }
 }

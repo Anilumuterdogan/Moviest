@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Update.Internal;
 using Project.ENTITIES.CoreInterfaces;
 using Project.ENTITIES.Enums;
 using System;
@@ -25,7 +26,8 @@ namespace Project.ENTITIES.Models
 
         //Relational Properties
         public virtual AppUserProfile Profile { get; set; }
-        
+        public virtual ICollection<MovieList> MovieLists { get; set; }
+
 
     }
 }
