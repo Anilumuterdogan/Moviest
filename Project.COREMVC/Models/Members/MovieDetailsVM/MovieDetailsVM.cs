@@ -8,6 +8,6 @@ namespace Project.COREMVC.Models.Members.MovieDetailsVM
     public class MovieDetailsVM
     {
         public  MovieVM Movie { get; set; }      
-        public  List<CastVM> Casts { get; set; }
+        public  List<CastVM> Casts { get; set; }                
     }
 }

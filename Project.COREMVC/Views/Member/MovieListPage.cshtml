@@ -11,35 +11,7 @@
     @foreach (MovieItem item in Model.GetMovieItems)
     {
 
-        @* <div class="col-md-4">
-            <section class="panel">
-                <div class="pro-img-box">
-                    
-                        <img src="@item.ImagePath" alt="" />
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title" title="@item.MovieName">
-                                @item.MovieName
-                            </a>
-                        </h4>
-
-                    </div>
-                   
-
-                    <a asp-action="DeleteFromMovieList" asp-route-id="@item.ID" class="adtocart">
-                        <i class="glyphicon glyphicon-remove"></i>
-                    </a>
-
-
-                   
-                </div>
-
-                
-            </section>
-        </div> *@
-
-       
-
+ 
         <div class="col-md-4">
             <section class="panel">
                 <div class="pro-img-box" width="60px" height="60px">

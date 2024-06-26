@@ -61,29 +61,7 @@
 
         <div class="row product-list">
 
-            @* @foreach (MovieVM item in Model.Movies)
-            {
-                
-                <div class="col-md-4">
-                    <section class="panel">
-                        <div class="pro-img-box" width="60px" height="60px">
-                            <img src="@item.ImagePath" alt="" />
-                            <a asp-action="AddToMovie" asp-route-id="@item.ID" class="adtocart">
-                                <i class="icon-shopping-cart"></i>
-                            </a>
-                        </div>
-
-                        <div class="panel-body text-center">
-                            <h4>
-                                <a  href="#" class="pro-title" title="@item.MovieName">
-                                    @item.MovieName
-                                </a>
-                            </h4>
-
-                        </div>
-                    </section>
-                </div>
-            } *@
+          
             @foreach (MovieVM item in Model.Movies)
             {
                 <div class="col-md-4">

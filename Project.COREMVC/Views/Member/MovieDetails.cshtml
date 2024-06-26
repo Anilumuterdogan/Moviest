@@ -25,13 +25,20 @@
         <div class="col-md-12">
             <h3>Cast</h3>
             <div class="cast-container">
-                @foreach (var actor in Model.Casts)
+                @foreach (var item in Model.Casts)
                 {
                     <div class="cast-member">
-                        <img src="@actor.ImagePath" alt="@actor.FirstName @actor.LastName" class="cast-img" />
-                        <p>@actor.FirstName @actor.LastName</p>
+                        <a href="@Url.Action("CastDetails", "Member", new { id = item.ID })">
+                            <img src="@item.ImagePath" alt="@item.FirstName @item.LastName" class="cast-img" />
+                        </a>
+                        <p>
+                            <a href="@Url.Action("CastDetails", "Member", new { id = item.ID })">
+                                @item.FirstName @item.LastName
+                            </a>
+                        </p>
                     </div>
                 }
+               
             </div>
         </div>
     </div>

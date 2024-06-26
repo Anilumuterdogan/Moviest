@@ -1,0 +1,22 @@
+﻿@model CastVM
+
+<link href="/OuterTools/css/bootstrap.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Model.ImagePath" alt="@Model.FirstName @Model.LastName" class="img-fluid" />
+        </div>
+        <div class="col-md-8">
+            <h1>@Model.FirstName @Model.LastName</h1>
+           
+        </div>
+        
+    </div>
+</div>
+
+<style>
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+</style>

@@ -144,20 +144,6 @@ namespace Project.COREMVC.Controllers
             return HttpContext.Session.GetObject<MovieList>(key);
         }
 
-        //public MovieVM GetMovieById(int id)
-        //{
-        //    var movie = _movieManager.Where(m => m.ID == id).Select(m => new MovieVM
-        //        {
-        //            ID = m.ID,
-        //            MovieName = m.MovieName,
-        //            Description = m.Description,
-        //            ImagePath = m.ImagePath
-
-        //        }).FirstOrDefault();
-
-        //    return movie;
-        //}
-
         public MovieDetailsVM GetMovieById(int id)
         {
             var movie = _movieManager.Where(m => m.ID == id).Select(m => new MovieVM
@@ -195,6 +181,26 @@ namespace Project.COREMVC.Controllers
             }
 
             return View(movie);
+        }
+       
+        public IActionResult CastDetails(int id)
+        {
+            var cast = _castManager.Where(c => c.ID == id).Select(c => new CastVM
+            {
+                ID = c.ID,
+                FirstName = c.FirstName,
+                LastName = c.LastName,
+                ImagePath = c.ImagePath
+
+            }).FirstOrDefault();
+
+            if (cast == null)
+            {
+                return NotFound();
+            }
+
+            return View(cast);
+
         }
     }
 }
