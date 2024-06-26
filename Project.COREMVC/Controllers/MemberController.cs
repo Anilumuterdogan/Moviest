@@ -159,7 +159,7 @@ namespace Project.COREMVC.Controllers
 
             List<CastVM> casts = _movieCastManager.Where(c => c.MovieID == id).Select(c => new CastVM
             {
-                ID = c.ID,
+                ID = c.Cast.ID,
                FirstName  = c.Cast.FirstName,
                LastName = c.Cast.LastName,
                ImagePath = c.Cast.ImagePath
