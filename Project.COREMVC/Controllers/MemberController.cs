@@ -162,6 +162,7 @@ namespace Project.COREMVC.Controllers
                 ID = c.Cast.ID,
                FirstName  = c.Cast.FirstName,
                LastName = c.Cast.LastName,
+               Description = c.Cast.Description,
                ImagePath = c.Cast.ImagePath
 
             }).ToList();
@@ -190,6 +191,7 @@ namespace Project.COREMVC.Controllers
                 ID = c.ID,
                 FirstName = c.FirstName,
                 LastName = c.LastName,
+                Description = c.Description,
                 ImagePath = c.ImagePath
 
             }).FirstOrDefault();
