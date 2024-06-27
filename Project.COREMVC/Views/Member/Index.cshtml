@@ -3,34 +3,75 @@
 
 <h5><span class="text-danger">@TempData["message"]</span></h5>
 @* Burraya tempdata ile appuser id yollarsak sepete eklendiğinde appuserid'yi rahatça eşleriz *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="/path/to/your/bootstrap.min.css"> 
+    <style>
+       
+        .panel {
+            background-color: #f8f9fa; 
+            border: 1px solid #dee2e6; 
+            padding: 15px;
+        }
+
+        .panel-body {
+            padding: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff; 
+            border-color: #007bff; 
+            color: #fff; 
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+                border-color: #0056b3; 
+            }
+
+        .btn-outline-primary {
+            color: #007bff; 
+            border-color: #007bff; 
+        }
+
+            .btn-outline-primary:hover {
+                background-color: #f0f0f0; 
+            }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
 <div class="row">
     <div class="col-md-3">
-
         <section class="panel">
-            <header class="panel-heading">
-                Genres
-            </header>
+            <div class="row mt-2">
+                <div class="col-sm-6">
+                    <a asp-controller="Member" asp-action="Index" class="btn btn-primary btn-block">All Movies</a>
+                </div>
+            </div>
+            
             <div class="panel-body">
-                <ul class="nav prod-cat">
-                    <li style="padding-top:30px">
-                        <a asp-controller="Member" asp-action="Index" class="btn btn-primary">All Genres</a>
-                    </li>
+                <div class="row">
                     @foreach (GenreVM item in Model.Genres)
                     {
-                        
-                        <li style="padding-top:30px">
-
-                            <a asp-controller="Member" asp-action="Index" asp-route-genreID="@item.ID" class="btn btn-primary">@item.GenreName</a>
-
-
-                        </li>
-
+                        <div class="col-sm-6 mb-2">
+                            <a asp-controller="Member" asp-action="Index" asp-route-genreID="@item.ID" class="btn btn-outline-primary btn-block">@item.GenreName</a>
+                        </div>
                     }
-                </ul>
+                </div>
+               
             </div>
         </section>
-
     </div>
+</div>
+
     <div class="col-md-9">
         <section class="panel">
             <div class="panel-body">

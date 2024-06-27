@@ -35,61 +35,145 @@
     <section id="container">
         <!--header start-->
         <header class="header white-bg">
-            <div class="sidebar-toggle-box">
-                <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
-            </div>
-            <!--logo start-->
-            <a href="index.html" class="logo">MOVIE<span>ST</span></a>
-            <!--logo end-->
+            
 
-            <span>
-                <ul class="pull-right top-menu">
-
-                    <li>
-                        <a asp-action="Register" asp-controller="Home">Kayıt Ol</a>
-                    </li>
-
-                </ul>
-
-            </span>
-
-
-            <div class="top-nav ">
-                <!--search & user info start-->
-                <ul class="nav pull-right top-menu">
-                    <li>
-                        <input type="text" class="form-control search" placeholder="Search">
-                    </li>
-                    <!-- user login dropdown start-->
-                    @{
-                        if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="dropdown">
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                    <img alt="" src="/OuterTools/img/avatar1_small.jpg">
-                                    <span class="username">@User.Identity.Name</span>
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu extended logout">
-                                    <div class="log-arrow-up"></div>
-
-                                    @RenderSection("Sepet", false)
-
-                                    <li><a asp-controller="Home" asp-action="SignOut"><i class="icon-key"></i> Log Out</a></li>
-                                </ul>
-                            </li>
-                        }
-                        else
-                        {
-                            <li>
-                                <button class="btn btn-success "><a asp-controller="Home" asp-action="SignIn">Sign-In</a> </button>
-
-                            </li>
-                            <li>
-                                @RenderSection("Sepet", false)
-                            </li>
-                        }
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="/OuterTools/css/bootstrap.min.css">
+                <style>
+                    .top-menu {
+                        display: flex;
+                        align-items: center;
                     }
+
+                        .top-menu li {
+                            list-style: none;
+                            margin-right: 15px;
+                        }
+
+                        .top-menu .btn-success a {
+                            color: white;
+                            text-decoration: none;
+                        }
+
+                    .top-nav {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        background-color: #343a40;
+                        padding: 5px 20px; 
+                    }
+
+                        .top-nav .nav {
+                            display: flex;
+                            align-items: center;
+                        }
+
+                            .top-nav .nav li {
+                                list-style: none;
+                                margin-right: 15px;
+                            }
+
+                        .top-nav .search {
+                            margin-right: 20px;
+                            display: flex; 
+                            align-items: center;
+                        }
+
+                        .top-nav .dropdown-menu {
+                            right: 0;
+                            left: auto;
+                        }
+
+                    .dropdown-toggle img {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                    }
+
+                    .dropdown-toggle .username {
+                        margin-left: 10px;
+                        color: white;
+                    }
+
+                    .form-inline input[type="search"] {
+                        border-radius: 15px;
+                        padding: 5px 10px;
+                        border: none;
+                        margin-right: 5px; 
+                    }
+
+                    .form-inline .btn-success {
+                        border-radius: 15px;
+                        padding: 5px 15px;
+                        border: none;
+                        margin-right: 15px; 
+                    }
+
+                        .form-inline .btn-success a {
+                            color: white;
+                            text-decoration: none;
+                        }
+                </style>
+            </head>
+            <body>
+                <div class="top-nav">
+                    <!-- Logo -->
+                    <a href="@Url.Action("Index", "Member")" class="logo">MOVIE<span>ST</span></a>
+
+
+                    <!--search & user info start-->
+                    <ul class="nav top-menu">
+                        <!-- Search -->
+                        <form asp-controller="Member" asp-action="Search" method="get" class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="model">
+                            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+
+                        <!-- Register Button -->
+                        <li>
+                            <button class="btn btn-success"><a asp-controller="Home" asp-action="Register">Register</a></button>
+                        </li>
+
+                        <!-- user login dropdown start-->
+                        @{
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                        <img alt="" src="/OuterTools/img/avatar1_small.jpg">
+                                        <span class="username">@User.Identity.Name</span>
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu extended logout">
+                                        <div class="log-arrow-up"></div>
+                                        @RenderSection("Sepet", false)
+                                        <li><a asp-controller="Home" asp-action="SignOut"><i class="icon-key"></i> Log Out</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <button class="btn btn-success"><a asp-controller="Home" asp-action="SignIn">Sign-In</a></button>
+                                </li>
+                                <li>
+                                    @RenderSection("Sepet", false)
+                                </li>
+                            }
+                        }
+                        <!-- user login dropdown end -->
+                    </ul>
+                    <!--search & user info end-->
+                </div>
+
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            </body>
+        </html>
 
                     <!-- user login dropdown end -->
                 </ul>
@@ -98,176 +182,7 @@
         </header>
         <!--header end-->
         <!--sidebar start-->
-        <aside>
-            <div id="sidebar" class="nav-collapse ">
-                <!-- sidebar menu start-->
-                <ul class="sidebar-menu" id="nav-accordion">
-                    <li>
-                        <a class="active" href="index.html">
-                            <i class="icon-dashboard"></i>
-                            <span>All Movies</span>
-                        </a>
-                    </li>
-
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-laptop"></i>
-                            <span>Layouts</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="boxed_page.html">Boxed Page</a></li>
-                            <li><a href="horizontal_menu.html">Horizontal Menu</a></li>
-                            <li><a href="language_switch_bar.html">Language Switch Bar</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-book"></i>
-                            <span>UI Elements</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="general.html">General</a></li>
-                            <li><a href="buttons.html">Buttons</a></li>
-                            <li><a href="widget.html">Widget</a></li>
-                            <li><a href="slider.html">Slider</a></li>
-                            <li><a href="nestable.html">Nestable</a></li>
-                            <li><a href="font_awesome.html">Font Awesome</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-cogs"></i>
-                            <span>Components</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="grids.html">Grids</a></li>
-                            <li><a href="calendar.html">Calendar</a></li>
-                            <li><a href="gallery.html">Gallery</a></li>
-                            <li><a href="todo_list.html">Todo List</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-tasks"></i>
-                            <span>Form Stuff</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="form_component.html">Form Components</a></li>
-                            <li><a href="advanced_form_components.html">Advanced Components</a></li>
-                            <li><a href="form_wizard.html">Form Wizard</a></li>
-                            <li><a href="form_validation.html">Form Validation</a></li>
-                            <li><a href="dropzone.html">Dropzone File Upload</a></li>
-                            <li><a href="inline_editor.html">Inline Editor</a></li>
-                            <li><a href="image_cropping.html">Image Cropping</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-th"></i>
-                            <span>Data Tables</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="basic_table.html">Basic Table</a></li>
-                            <li><a href="responsive_table.html">Responsive Table</a></li>
-                            <li><a href="dynamic_table.html">Dynamic Table</a></li>
-                            <li><a href="advanced_table.html">Advanced Table</a></li>
-                            <li><a href="editable_table.html">Editable Table</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="inbox.html">
-                            <i class="icon-envelope"></i>
-                            <span>Mail </span>
-                            <span class="label label-danger pull-right mail-info">2</span>
-                        </a>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class=" icon-bar-chart"></i>
-                            <span>Charts</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="morris.html">Morris</a></li>
-                            <li><a href="chartjs.html">Chartjs</a></li>
-                            <li><a href="flot_chart.html">Flot Charts</a></li>
-                            <li><a href="xchart.html">xChart</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-shopping-cart"></i>
-                            <span>Shop</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="product_list.html">List View</a></li>
-                            <li><a href="product_details.html">Details View</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="google_maps.html">
-                            <i class="icon-map-marker"></i>
-                            <span>Google Maps </span>
-                        </a>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-glass"></i>
-                            <span>Extra</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="blank.html">Blank Page</a></li>
-                            <li><a href="lock_screen.html">Lock Screen</a></li>
-                            <li><a href="profile.html">Profile</a></li>
-                            <li><a href="invoice.html">Invoice</a></li>
-                            <li><a href="search_result.html">Search Result</a></li>
-                            <li><a href="404.html">404 Error</a></li>
-                            <li><a href="500.html">500 Error</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="login.html">
-                            <i class="icon-user"></i>
-                            <span>Login Page</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-controller="Genre" asp-action="Index"> Genre</a>
-                        <i class="icon-user"></i>
-                        <span>Login Page</span>
-                        </a>
-                    </li>
-
-                    <!--multi level menu start-->
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="icon-sitemap"></i>
-                            <span>Multi level Menu</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="javascript:;">Menu Item 1</a></li>
-                            <li class="sub-menu">
-                                <a href="boxed_page.html">Menu Item 2</a>
-                                <ul class="sub">
-                                    <li><a href="javascript:;">Menu Item 2.1</a></li>
-                                    <li class="sub-menu">
-                                        <a href="javascript:;">Menu Item 3</a>
-                                        <ul class="sub">
-                                            <li><a href="javascript:;">Menu Item 3.1</a></li>
-                                            <li><a href="javascript:;">Menu Item 3.2</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <!--multi level menu end-->
-
-                </ul>
-                <!-- sidebar menu end-->
-            </div>
-        </aside>
+        
         <!--sidebar end-->
         <!--main content start-->
         <section id="main-content">

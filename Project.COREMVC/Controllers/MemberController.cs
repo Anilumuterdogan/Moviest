@@ -202,5 +202,21 @@ namespace Project.COREMVC.Controllers
             return View(cast);
 
         }
+
+        public IActionResult Search(string model)
+        {
+            if (string.IsNullOrEmpty(model))
+            {
+                return View(new List<MovieVM>());
+            }
+            var movies = _movieManager.Where(m => m.MovieName.Contains(model)).Select(m => new MovieVM
+            {
+                ID = m.ID,
+                MovieName = m.MovieName,
+                ImagePath = m.ImagePath
+            }).ToList();
+
+            return View(movies);
+        }
     }
 }
