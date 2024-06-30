@@ -161,8 +161,11 @@ namespace Project.COREMVC.Controllers
             if (ModelState.IsValid) 
             {
                 AppUser appUser = await _userManager.FindByNameAsync(model.UserName);
-
-                SignInResult result = await _signInManager.PasswordSignInAsync(appUser, model.Password, model.RememberMe, true);
+                if (appUser==null)
+                {
+                    return RedirectToAction("SignIn");
+                }
+                SignInResult result = await _signInManager.PasswordSignInAsync( appUser, model.Password, model.RememberMe, true);
                 if(result.Succeeded)
                 {
                     if (!string.IsNullOrWhiteSpace(model.ReturnUrl))
