@@ -8,7 +8,6 @@ using Project.COREMVC.Models.Members.MemberPageVM;
 using Project.COREMVC.Models.SessionService;
 using Project.ENTITIES.Models;
 using X.PagedList;
-using MovieList = Project.COREMVC.Models.Members.WatchlistTools.MovieList;
 using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Concretes;
 using Project.COREMVC.Models.Members.MovieDetailsVM;
@@ -18,6 +17,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Project.COREMVC.Models.Members.WatchlistTools;
+using Project.DAL.ContextClasses;
 
 namespace Project.COREMVC.Controllers
 {
@@ -120,21 +120,7 @@ namespace Project.COREMVC.Controllers
             else
             {
                 TempData["message"] = "This movie is already in your watch list.";
-            }
-            //MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie") == null ? new MovieList() : HttpContext.Session.GetObject<MovieList>("dmovie");
-
-            //Movie movieAdd = _mapper.Map<Movie>(await _movieManager.FindAsync(id));
-            //MovieItem mi = new()
-            //{
-            //    ID = movieAdd.ID,
-            //    MovieName = movieAdd.MovieName,
-            //    ImagePath = movieAdd.ImagePath
-            //};
-
-            //m.AddToMovie(mi);
-            //SetMovieList(m);
-
-            //TempData["message"] = $"{mi.MovieName} added to movie watch list";
+            }          
 
             return RedirectToAction("Index");
         }
@@ -172,55 +158,16 @@ namespace Project.COREMVC.Controllers
             return View(model);
 
 
-
-
-            //if (HttpContext.Session.GetObject<MovieList>("dmovie") == null)
-            //{
-            //    TempData["message"] = "watclist is currently empty ";
-            //    return RedirectToAction("Index");
-            //}
-            //MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie");
-
-            // return View(movies);
-
         }
 
         public async Task<IActionResult> DeleteFromMovieList(int id)
         {
-            int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            _movieListManager.DestroyRange(_movieListManager.Where(x=>x.MovieID == id && x.AppUserID==userId));
+            _movieListManager.Delete(await _movieListManager.FindAsync(id));
 
-
-            //var movieList = await _movieListManager.FindAsync(movieId, userId);
-            //if (movieList == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //_movieListManager.Delete(movieList);
-
-
-
-            //if (GetMovieListFromSession("dmovie") != null)
-            //{
-            //    MovieList m = GetMovieListFromSession("dmovie");
-            //    m.RemoveMovieList(id);
-            //    SetMovieList(m);
-            //    if (m.GetMovieItems.Count == 0)
-            //    {
-            //        HttpContext.Session.Remove("dmovie");
-            //        TempData["message"] = "İzleme listenizdeki bütün filmler çıkarılmıştır.";
-            //        return RedirectToAction("Index");
-            //    }
-
-            //}
             return RedirectToAction("MovieListPage");
         }
 
-        MovieList GetMovieListFromSession(string key)
-        {
-            return HttpContext.Session.GetObject<MovieList>(key);
-        }
+        
 
         public MovieDetailsVM GetMovieById(int id)
         {
