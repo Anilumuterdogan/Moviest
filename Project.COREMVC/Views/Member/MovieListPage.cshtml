@@ -1,14 +1,43 @@
-﻿@model MovieList
+﻿@model WatchListVM
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist</title>
+    <link rel="stylesheet" href="/path/to/your/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
 
+        .movie-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
 
-<div class="jumbotron">
-   Movie Count => @Model.MovieTotal </a>
-</div>
+        .movie-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .remove-btn {
+            color: red;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Watchlist</h1>
+    <div class="movie-list">
 
 <div class="row product-list">
 
-    @foreach (MovieItem item in Model.GetMovieItems)
+    @foreach (MovieVM item in Model.Movies)
     {
 
  
@@ -29,7 +58,7 @@
                     </h4>
                 </div>
 
-                <a asp-action="DeleteFromMovieList" asp-route-id="@item.ID" class="adtocart">
+                <a asp-action="DeleteFromMovieList" asp-route-id="@item.ID" class="adtocart"> @* burada class adtocart nerede onu bul *@
                     <i class="glyphicon glyphicon-remove"></i>
                 </a>
 
@@ -38,6 +67,6 @@
 
     }
 
-
-
 </div>
+</body>
+</html>

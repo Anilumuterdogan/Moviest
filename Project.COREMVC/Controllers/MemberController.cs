@@ -13,6 +13,9 @@ using Project.BLL.DTOClasses;
 using Project.BLL.ManagerServices.Concretes;
 using Project.COREMVC.Models.Members.MovieDetailsVM;
 using Project.COREMVC.Models.Members.Casts;
+using System.Security.Claims;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 
 namespace Project.COREMVC.Controllers
 {
@@ -24,9 +27,11 @@ namespace Project.COREMVC.Controllers
         readonly IMovieCastManager _movieCastManager;
         readonly ICastManager _castManager;
         readonly IMapper _mapper;
+        readonly IMovieListManager _movieListManager;
+        readonly UserManager<AppUser> _userManager;
 
 
-        public MemberController(IGenreManager genreManager, IMovieManager movieManager, IMapper mapper, IMovieGenreManager movieGenreManager, ICastManager castManager, IMovieCastManager movieCastManager)
+        public MemberController(IGenreManager genreManager, IMovieManager movieManager, IMapper mapper, IMovieGenreManager movieGenreManager, ICastManager castManager, IMovieCastManager movieCastManager, IMovieListManager movieListManager, UserManager<AppUser> userManager)
         {
             _genreManager = genreManager;
             _movieManager = movieManager;
@@ -34,6 +39,8 @@ namespace Project.COREMVC.Controllers
             _movieGenreManager = movieGenreManager;
             _castManager = castManager;
             _movieCastManager = movieCastManager;
+            _movieListManager = movieListManager;
+            _userManager = userManager;
         }
 
         private List<MovieVM> MovieDtoToVM()
@@ -85,39 +92,70 @@ namespace Project.COREMVC.Controllers
                 TempData["message"] = "You need to be logged in to add a movie to your watch list.";
                 return RedirectToAction("Index"); 
             }
-            MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie") == null ? new MovieList() : HttpContext.Session.GetObject<MovieList>("dmovie");
 
-            Movie movieAdd = _mapper.Map<Movie>(await _movieManager.FindAsync(id));
-            MovieItem mi = new()
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var movie = await _movieManager.FindAsync(id);
+            if (movie == null)
             {
-                ID = movieAdd.ID,
-                MovieName = movieAdd.MovieName,
-                ImagePath = movieAdd.ImagePath
-            };
-                    
-            m.AddToMovie(mi);
-            SetMovieList(m);
+                TempData["message"] = "Movie not found.";
+                return RedirectToAction("Index");
+            }
+            MovieListDTO existingMovie = await _movieListManager.FirstOrDefaultAsync(m => m.AppUserID == userId && m.MovieID == id);
 
-            TempData["message"] = $"{mi.MovieName} added to movie watch list";
+            if (existingMovie == null)
+            {
+                var watchList = new MovieListDTO
+                {
+                    AppUserID = userId,
+                    MovieID = id
+                };
+
+                await _movieListManager.AddAsync(_mapper.Map<MovieListDTO>(watchList));
+                
+
+                TempData["message"] = $"{movie.MovieName} added to movie watch list.";
+            }
+            else
+            {
+                TempData["message"] = "This movie is already in your watch list.";
+            }
+            //MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie") == null ? new MovieList() : HttpContext.Session.GetObject<MovieList>("dmovie");
+
+            //Movie movieAdd = _mapper.Map<Movie>(await _movieManager.FindAsync(id));
+            //MovieItem mi = new()
+            //{
+            //    ID = movieAdd.ID,
+            //    MovieName = movieAdd.MovieName,
+            //    ImagePath = movieAdd.ImagePath
+            //};
+
+            //m.AddToMovie(mi);
+            //SetMovieList(m);
+
+            //TempData["message"] = $"{mi.MovieName} added to movie watch list";
 
             return RedirectToAction("Index");
         }
 
         private void SetMovieList(MovieList m)
         {
-            HttpContext.Session.SetObject("dmovie", m);           
+            HttpContext.Session.SetObject("dmovie", m);
+           
         }
-
-        public IActionResult MovieListPage()
+       
+        public async Task<IActionResult> MovieListPage(int id)
         {
-            if (HttpContext.Session.GetObject<MovieList>("dmovie") == null)
-            {
-                TempData["message"] = "watclist is currently empty ";
-                return RedirectToAction("Index");
-            }
-            MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie");
+
             
-            return View(m);
+
+            //if (HttpContext.Session.GetObject<MovieList>("dmovie") == null)
+            //{
+            //    TempData["message"] = "watclist is currently empty ";
+            //    return RedirectToAction("Index");
+            //}
+            //MovieList m = HttpContext.Session.GetObject<MovieList>("dmovie");
+
+            return View();
             
         }
 

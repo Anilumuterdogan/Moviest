@@ -10,5 +10,6 @@ namespace Project.BLL.ManagerServices.Abstracts
 {
     public interface IMovieListManager : IManager<MovieListDTO, MovieList>
     {
+        Task<MovieListDTO> FirstOrDefaultAsync(int userId);
     }
 }

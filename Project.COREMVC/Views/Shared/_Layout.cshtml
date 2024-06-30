@@ -99,6 +99,20 @@
                         color: white;
                     }
 
+                    .navbar {
+                        background-color: #343a40;
+                        padding: 10px;
+                    }
+
+                        .navbar a {
+                            color: white;
+                            margin-right: 15px;
+                            text-decoration: none;
+                        }
+
+                    .watchlist-icon {
+                        color: white;
+                    }
                     .form-inline input[type="search"] {
                         border-radius: 15px;
                         padding: 5px 10px;
@@ -124,7 +138,15 @@
                     <!-- Logo -->
                     <a href="@Url.Action("Index", "Member")" class="logo">MOVIE<span>ST</span></a>
 
-
+                    <nav class="navbar">
+                        <div class="container">                            
+                            <div class="ml-auto">
+                                <a href="@Url.Action("MovieListPage", "Member")" class="btn btn-success">
+                                    <i class="fas fa-bookmark"></i> Watchlist
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
                     <!--search & user info start-->
                     <ul class="nav top-menu">
                         <!-- Search -->
@@ -180,6 +202,7 @@
                 <!--search & user info end-->
             </div>
         </header>
+
         <!--header end-->
         <!--sidebar start-->
         

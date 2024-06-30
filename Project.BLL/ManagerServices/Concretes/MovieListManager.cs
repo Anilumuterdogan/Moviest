@@ -18,5 +18,10 @@ namespace Project.BLL.ManagerServices.Concretes
         {
             _mlRep=mlRep;
         }
+
+        public Task<MovieListDTO> FirstOrDefaultAsync(int userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
