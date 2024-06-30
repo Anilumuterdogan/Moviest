@@ -23,5 +23,7 @@ namespace Project.BLL.ManagerServices.Concretes
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

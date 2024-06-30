@@ -57,10 +57,10 @@
                         </a>
                     </h4>
                 </div>
-
-                <a asp-action="DeleteFromMovieList" asp-route-id="@item.ID" class="adtocart"> @* burada class adtocart nerede onu bul *@
-                    <i class="glyphicon glyphicon-remove"></i>
-                </a>
+                        <a href="@Url.Action("DeleteFromMovieList", "Member", new { id = item.ID })" class="btn btn-danger">Remove</a>
+                        
+                            @* burada class adtocart nerede onu bul *@
+                    
 
             </section>
         </div>

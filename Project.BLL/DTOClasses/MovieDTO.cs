@@ -18,6 +18,10 @@ namespace Project.BLL.DTOClasses
         //Relational Properties
         public virtual ICollection<MovieCastDTO> MovieCasts { get; set; }
         public virtual ICollection<MovieGenreDTO> MovieGenres { get; set; }
-        
+
+        public static implicit operator List<object>(MovieDTO? v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

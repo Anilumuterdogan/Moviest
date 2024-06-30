@@ -4,6 +4,7 @@ using Project.BLL.Handlers.ExpressionHandlers;
 using Project.BLL.ManagerServices.Abstracts;
 using Project.DAL.Repositories.Abstracts;
 using Project.ENTITIES.CoreInterfaces;
+using Project.ENTITIES.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -235,5 +236,25 @@ namespace Project.BLL.ManagerServices.Concretes
         {
             return ListUMappingToListT(_iRep.Where(ExpressionVisitorHelper.ReplaceVisitor<T, U>(exp)));
         }
+
+        public string DestroyWatchList(T item)
+        {
+            if (item.Status == ENTITIES.Enums.DataStatus.Inserted)
+            {
+                _iRep.Destroy(TMapingToU(item));
+                return "Veri basarıyla yok edildi";
+            }
+
+            return $"Veriyi silemezsiniz cünkü {item.ID} {item.Status}   pasif degil";
+        }
+
+        public string DestroyRangeWatchList(List<T> list)
+        {
+            foreach (T item in list) return Destroy(item);
+
+            return "Silme işleminde sorunla karsılasıldı lütfen veri durumunun pasif oldugundan emin olunuz";
+        }
+
+        
     }
 }
