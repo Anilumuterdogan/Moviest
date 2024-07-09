@@ -125,11 +125,6 @@ namespace Project.COREMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        private void SetMovieList(MovieList m)
-        {
-            HttpContext.Session.SetObject("dmovie", m);
-           
-        }
         
         public async Task<IActionResult> MovieListPage()
         {
@@ -162,7 +157,7 @@ namespace Project.COREMVC.Controllers
 
         public async Task<IActionResult> DeleteFromMovieList(int id)
         {
-            _movieListManager.Delete(await _movieListManager.FindAsync(id));
+            _movieListManager.DestroyWatchList(await _movieListManager.FindAsync(id));
 
             return RedirectToAction("MovieListPage");
         }

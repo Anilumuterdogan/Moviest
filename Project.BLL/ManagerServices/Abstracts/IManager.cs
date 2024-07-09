@@ -31,7 +31,7 @@ namespace Project.BLL.ManagerServices.Abstracts
         string Destroy(T item);
         string DestroyWatchList(T item);
         string DestroyRange(List<T> list);
-        string DestroyRangeWatchList(List<T> list);
+        
 
         //Linq Commands
         List<T> Where(Expression<Func<T, bool>> exp);

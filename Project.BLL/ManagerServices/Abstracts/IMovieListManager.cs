@@ -10,6 +10,6 @@ namespace Project.BLL.ManagerServices.Abstracts
 {
     public interface IMovieListManager : IManager<MovieListDTO, MovieList>
     {
-
+       
     }
 }
